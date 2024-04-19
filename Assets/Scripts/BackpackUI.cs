@@ -6,24 +6,21 @@ public class BackpackUI : InventoryUI
 {
    
     [SerializeField] private GameObject player;
-    // public GameObject PlayerGO { set { player = value; } }
+ 
     private PlayerMovement playerMvm;
 
     private PlayerInventory inventory;
-   // private InventorySlot[] slotsUI;
+   
     private Camera cam;
     private MouseLook mouseCursor;
-    private BackpackSlot[] slots;
+  
    
-    private PlayerInventory currentInventory;
-    
-    // Start is called before the first frame update
-    public void Start()
+    public override void Start()
     {
-        currentInventory = PlayerInventory.instance;
-        currentInventory.onItemUpdateCallback += UpdateUI; //update UI depending on the Inventory changes
-        slots = InventorySlotsParent.GetComponentsInChildren<BackpackSlot>(); //Get all the slots
-      
+       
+        base.Start();
+        CurrentInventory = PlayerInventory.instance;
+         CurrentInventory.onItemUpdateCallback += UpdateUI;
         playerMvm = player.GetComponent<PlayerMovement>();
         cam = Camera.main; //Camera
         mouseCursor = cam.GetComponent<MouseLook>(); //MouseLook script of the camera
@@ -32,25 +29,12 @@ public class BackpackUI : InventoryUI
 
 
 
-    public override void UpdateUI()
-    {
-        for (int i = 0; i < slots.Length; i++)
-        { //Always loop all slots
-            if (i < currentInventory.InventoryContainer.Inventory.Count) //As long as there are items in our inventory container
-            {
-                slots[i].AddItem(currentInventory.InventoryContainer.Inventory[i]); //Add the items that exist in our inventory to the UI inventory
-            }
-            else
-            { //The rest of the slots are empty
-                slots[i].ClearSlot();
-            }
-        }
-    }
+  
     public void InventoryMode(bool inventoryMode)
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < Slots.Length; i++)
         {
-            slots[i].UpdateMode(inventoryMode);
+            Slots[i].UpdateMode(inventoryMode);
         }
     }
     public override void ShowInventory()

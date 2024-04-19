@@ -97,7 +97,7 @@ public class ToolBarSlot : InventorySlot
     }
    public override void Update()
     {
-        if (toolbarUI.isToolBarEnabled)
+        if (toolbarUI.IsToolBarEnabled)
         {
             if (isSelected && Item != null)
                 SelectSlot();

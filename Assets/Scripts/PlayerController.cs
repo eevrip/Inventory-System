@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     Camera cam;
   IInteractable interactableItem;
-    public float distanceCheck = 5f; //the distance of the ray
+    [SerializeField] private float distanceCheck = 10f; //the distance of the ray
     public LayerMask layerMask;
 
-    public UIManager uiManager;
+    private UIManager uiManager;
 
     // Start is called before the first frame update
     void Start()
@@ -36,15 +36,15 @@ public class PlayerController : MonoBehaviour
         //Debug.DrawRay(ray.origin, ray.direction * 5, Color.yellow);
         if (Physics.Raycast(ray, out hit, distanceCheck, layerMask))
         { //If the ray hits something, in range distanceCheck
-            interactableItem = hit.collider.transform.parent.gameObject.GetComponent<Collectable>();
+            interactableItem = hit.collider.transform.parent.gameObject.GetComponent<IInteractable>();
 
+           // interactableItem = hit.collider.transform.parent.gameObject.GetComponent<Collectable>();
+            /* if (interactableItem == null)
+                 interactableItem = hit.collider.transform.parent.gameObject.GetComponent<Breakable>();
 
-            if (interactableItem == null)
-                interactableItem = hit.collider.transform.parent.gameObject.GetComponent<Breakable>();
-
-            if (interactableItem == null)
-                interactableItem = hit.collider.transform.parent.gameObject.GetComponent<Storage>();
-
+             if (interactableItem == null)
+                 interactableItem = hit.collider.transform.parent.gameObject.GetComponent<Storage>();
+            */
             if (interactableItem != null)
             {
 

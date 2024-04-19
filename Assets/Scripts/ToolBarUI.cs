@@ -5,24 +5,26 @@ using UnityEngine;
 public class ToolBarUI : MonoBehaviour
 {
     [SerializeField] private GameObject toolBarSlotsParent;
-    ToolBar toolBar;
-    ToolBarSlot[] slots;
-    PlayerInventory inventory;
-    public BackpackUI inventoryUI;
-    public int selectIdx = -1;
-    public bool isToolBarEnabled;
-    // Start is called before the first frame update
-    void Start()
+    
+    private ToolBarSlot[] slots;
+    private PlayerInventory backpack;
+    private BackpackUI backpackUI;
+    private int selectIdx = -1;
+    private bool isToolBarEnabled;
+    public bool IsToolBarEnabled { get { return isToolBarEnabled; }  }
+   
+    public void Start()
     {
-        // toolBar = ToolBar.instance;
-        // toolBar.onToolBarChangedCallback += UpdateToolBar; //update UI depending on the ToolBar changes
-        inventory = PlayerInventory.instance;
-        inventory.onItemUpdateCallback += UpdateToolBar; //update UI depending on the Inventory changes
-
+        
+       
+       backpack = PlayerInventory.instance;
+        backpack.onItemUpdateCallback += UpdateToolBar; //update UI depending on the Inventory changes
+        
         slots = toolBarSlotsParent.GetComponentsInChildren<ToolBarSlot>(); //Get all the slots
-                                                                           //  slots[selectIdx].ToggleHighlight();
-
-        isToolBarEnabled = !inventoryUI.IsUIShown;
+       
+       backpackUI = UIManager.instance.Backpack_UI;
+        isToolBarEnabled = !backpackUI.IsUIShown;
+        
     }
 
    
@@ -30,11 +32,11 @@ public class ToolBarUI : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         { //Always loop all slots
-            if (i < inventory.Toolbar.Length) //Check all the slots in the toolbar 
-                                              //if(i<toolBar.container.Count)
+            if (i < backpack.Toolbar.Length) //Check all the slots in the toolbar 
+                                              
             {
-                if (inventory.Toolbar[i] != null) //if an item is assigned 
-                    slots[i].AddItem(inventory.Toolbar[i]); //Display the item to toolbar ui
+                if (backpack.Toolbar[i] != null) //if an item is assigned 
+                    slots[i].AddItem(backpack.Toolbar[i]); //Display the item to toolbar ui
 
                 else
                     //The rest of the slots are empty
@@ -46,7 +48,7 @@ public class ToolBarUI : MonoBehaviour
   
     private void Update()
     {
-        isToolBarEnabled = !inventoryUI.IsUIShown;
+        isToolBarEnabled = !backpackUI.IsUIShown;
         if (isToolBarEnabled)
         {
             //Choose slot in order to be able to use item
@@ -63,11 +65,11 @@ public class ToolBarUI : MonoBehaviour
                 else
                     slots[selectIdx].ToggleHighlight();
                 if (scroll < 0)
-                    selectIdx = (selectIdx + 1) % inventory.ToolBarSize;
+                    selectIdx = (selectIdx + 1) % backpack.ToolBarSize;
                 else if (scroll > 0)
-                    selectIdx = (inventory.ToolBarSize + selectIdx - 1) % inventory.ToolBarSize;
+                    selectIdx = (backpack.ToolBarSize + selectIdx - 1) % backpack.ToolBarSize;
 
-                //  Debug.Log(selectIdx);
+               
                 slots[selectIdx].ToggleHighlight();
 
             }

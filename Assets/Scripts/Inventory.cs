@@ -19,6 +19,11 @@ public class Inventory : MonoBehaviour
         Debug.Log("Nothing happening");
         return false;
     }
+    public virtual void Remove(ItemObject item)
+    {
+        Debug.Log("Remove item");
+        
+    }
     public delegate void OnItemUpdate();
     public OnItemUpdate onItemUpdateCallback;
 }

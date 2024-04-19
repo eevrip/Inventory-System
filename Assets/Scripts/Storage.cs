@@ -54,7 +54,7 @@ public class Storage : Inventory, IInteractable
         return true;
     }
 
-    public void Remove(ItemObject item)
+    public override void Remove(ItemObject item)
     {
        
             InventoryContainer.RemoveFromInventory(item);

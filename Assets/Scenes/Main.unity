@@ -1458,7 +1458,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  uiManager: {fileID: 0}
 --- !u!1001 &362398760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4387,9 +4386,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolBarSlotsParent: {fileID: 1775935137}
-  inventoryUI: {fileID: 1692908280}
-  selectIdx: -1
-  isToolBarEnabled: 0
 --- !u!1 &988471495
 GameObject:
   m_ObjectHideFlags: 0
@@ -10839,16 +10835,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1775935138}
     m_Modifications:
-    - target: {fileID: 952079788413905232, guid: 9e993975cb82e3047a0fe6fce0325e04,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 952079788413905232, guid: 9e993975cb82e3047a0fe6fce0325e04,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 952079788413905233, guid: 9e993975cb82e3047a0fe6fce0325e04,
         type: 3}
       propertyPath: m_Enabled

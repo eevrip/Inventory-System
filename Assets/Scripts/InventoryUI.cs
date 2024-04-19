@@ -3,41 +3,62 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
-{   [SerializeField]private GameObject inventoryScreen;
+{
+    [SerializeField] private GameObject inventoryScreen;
     public GameObject InventoryScreen => inventoryScreen;
-    [SerializeField]private Transform inventorySlotsParent;
+    [SerializeField] private Transform inventorySlotsParent;
     public Transform InventorySlotsParent => inventorySlotsParent;
-   
+
     private bool isUIShown = false;
     public bool IsUIShown => isUIShown;
-   
-    // Start is called before the first frame update
-   /* public virtual void Start()
+
+    private Inventory currentInventory;
+    public Inventory CurrentInventory
     {
-        slotsUI = inventorySlotsParent.GetComponentsInChildren<InventorySlot>(); //Get all the slots
-       
+        get { return currentInventory; }
+        set
+        { currentInventory = value; }
     }
-   */
+
+    private InventorySlot[] slots;
+    public InventorySlot[] Slots { get { return slots; } set { slots = value; } }
+
     
+    public virtual void Start()
+    {
+        slots = inventorySlotsParent.GetComponentsInChildren<InventorySlot>(); //Get all the slots
+      
+    }
+
+
 
     public virtual void UpdateUI()
     {
-        
+        for (int i = 0; i < slots.Length; i++)
+        { //Always loop all slots
+            if (i < currentInventory.InventoryContainer.Inventory.Count) //As long as there are items in our inventory container
+            {
+                slots[i].AddItem(currentInventory.InventoryContainer.Inventory[i]); //Add the items that exist in our inventory to the UI inventory
+            }
+            else
+            { //The rest of the slots are empty
+                slots[i].ClearSlot();
+            }
+        }
     }
-  
+
     public virtual void ShowInventory()
     {
-       // playerMvm.enabled = false;
+       
         inventoryScreen.SetActive(true);
         isUIShown = true;
-       // Cursor.lockState = CursorLockMode.Confined; //Mouse Cursor appears and cannot escape the screen boundaries Confined wasnt working properly
-       // mouseCursor.enabled = false;
+        
     }
-    public virtual void CloseInventory() {
-       // playerMvm.enabled = true;
+    public virtual void CloseInventory()
+    {
+       
         inventoryScreen.SetActive(false);
         isUIShown = false;
-       // Cursor.lockState = CursorLockMode.Locked; //Mouse Cursor is locked to the center of the screen
-       // mouseCursor.enabled = true;
+        
     }
 }
