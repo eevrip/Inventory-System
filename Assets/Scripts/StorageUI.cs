@@ -48,7 +48,5 @@ public class StorageUI : InventoryUI
 
         ClearStorage();
         base.CloseInventory();
-
-
     }
 }

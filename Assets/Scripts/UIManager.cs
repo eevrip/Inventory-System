@@ -57,6 +57,9 @@ public class UIManager : MonoBehaviour
                 storageUI.CloseInventory();
                 backpackUI.CloseInventory();
                 wasStorageClosed = true;
+
+
+
             }
         }
 
