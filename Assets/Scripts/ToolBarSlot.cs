@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class ToolBarSlot : InventorySlot
+public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHandler
 {
     
     [SerializeField] private GameObject slotHighlight;
   
     private bool isSelected = false;
     private ToolBarUI toolbarUI;
-   
+    
 
     public override void Start()
     {
@@ -82,8 +82,7 @@ public class ToolBarSlot : InventorySlot
         }
 
     }
-   
-    
+
 
     public override void AssignItemToolBar(int index)
     {
@@ -102,8 +101,7 @@ public class ToolBarSlot : InventorySlot
             if (isSelected && Item != null)
                 SelectSlot();
         }
-        // if (isOnSlot)
-        //   HoveringOver();
+       
         base.Update();
     }
 }

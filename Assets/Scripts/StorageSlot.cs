@@ -18,9 +18,12 @@ public class StorageSlot : InventorySlot
    
     public void SwitchContainers()
     {
-       // Debug.Log("Switching containers");
-        if (backpack.Add(Item))
-            storageUI.CurrentInventory.Remove(Item);
+        // Debug.Log("Switching containers");
+        if (Item)
+        {
+            if (backpack.Add(Item))
+                storageUI.CurrentInventory.Remove(Item);
+        }
     }
     public override void Update()
     {

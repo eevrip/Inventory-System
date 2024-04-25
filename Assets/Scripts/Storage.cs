@@ -38,14 +38,7 @@ public class Storage : Inventory, IInteractable
 
     public override bool Add(ItemObject item)
     {
-        /* if(chestContainer.Count >= chestSize)
-         {
-             Debug.Log("Chest is full");
-             return false;
-         }
-         chestContainer.Add(item);
-
-         chestContainer.Sort(ComparingID);*/
+        
 
         if (!InventoryContainer.AddToInventory(item))
             return false;

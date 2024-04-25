@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class BackpackSlot : InventorySlot
+public class BackpackSlot : InventorySlot, IPointerEnterHandler, IPointerExitHandler
 {
 
     
@@ -10,7 +11,7 @@ public class BackpackSlot : InventorySlot
     public Image ImageIcon2 { set { imageIcon2 = value; } }
 [SerializeField] private GameObject inventoryButton;
     [SerializeField] private GameObject switchContainerButton;
-    
+  //  private bool isOnSlot;
 
     private StorageUI storageUI;
 
@@ -45,11 +46,12 @@ public class BackpackSlot : InventorySlot
     {
         //ToolBar.instance.Remove(item);//removes the first item found in toolbar
         //  Inventory.instance.RemoveSpawn(item);
-        PlayerInventory.instance.RemoveSpawn(StaticIndex);
+        if(Item)
+            PlayerInventory.instance.RemoveSpawn(StaticIndex);
     }
     public void UseItem()
     {
-        if (Item != null)
+        if (Item)
         {
             Item.Use();
         }
@@ -81,15 +83,32 @@ public class BackpackSlot : InventorySlot
    
 
 
-
     public override void AssignItemToolBar(int index)
     {
-        if (Item != null)
+
+        if (Item)
+        {
+            Debug.Log(Item.prefab.name + "" + StaticIndex + "assign" + index);
             PlayerInventory.instance.AssignItemToolBarFromInventory(Item, index, StaticIndex);
+        }
 
     }
+  /*  public override void Update()
+    {
+        if (UIManager.instance.Backpack_UI.IsUIShown || UIManager.instance.Storage_UI.IsUIShown)
+        {
+            
+            if (isOnSlot)
+                HoveringOver();
+        }
+        else
+        {
+            isOnSlot = false;
+            Debug.Log("out " + StaticIndex);
 
+        }
+    }
 
-    
+    */
 
 }

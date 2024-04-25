@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlot : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
 {
 
     private ItemObject item;
@@ -12,7 +12,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public int StaticIndex => staticIndex;
 
     private bool isOnSlot;
-    public bool IsOnSlot => isOnSlot;
+    public bool IsOnSlot
+    {
+        get { return isOnSlot; }
+        set { isOnSlot = value; }
+    }
 
 
     
@@ -34,7 +38,8 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 
     }
-
+    
+   
     public virtual void ClearSlot()
     {
         if (item != null)
@@ -51,14 +56,24 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         
     }
+
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         isOnSlot = true;
+        Debug.Log("in " + StaticIndex);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
 
         isOnSlot = false;
+        Debug.Log("out " + StaticIndex);
+    }
+
+    public void OnDisable()
+    {
+        isOnSlot = false;
+
     }
 
     public void HoveringOver()
@@ -94,19 +109,18 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 
 
-
-    public virtual void AssignItemToolBar(int index)
-    {
-        
-
-    }
+     public virtual void AssignItemToolBar(int index)
+     {
 
 
-    public virtual void Update()
-    {
-        if (isOnSlot)
-            HoveringOver();
-    }
+     }
+
+
+      public virtual void Update()
+       {
+          if (isOnSlot)
+              HoveringOver();
+       }
 
 
 }

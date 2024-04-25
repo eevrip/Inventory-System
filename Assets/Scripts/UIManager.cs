@@ -41,9 +41,11 @@ public class UIManager : MonoBehaviour
                 {
                     isUIEnabled = true;
                     backpackUI.ShowInventory();
+                    
                 }
                 else
                 {   isUIEnabled = false;
+                   
                     backpackUI.CloseInventory();
                 }
             }
@@ -54,6 +56,7 @@ public class UIManager : MonoBehaviour
             if (Input.GetButtonDown("Esc"))
             {
                 isUIEnabled = false;
+               
                 storageUI.CloseInventory();
                 backpackUI.CloseInventory();
                 wasStorageClosed = true;
