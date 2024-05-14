@@ -27,7 +27,7 @@ public class PlayerInventory : Inventory
    // public delegate void OnItemUpdate();
   //  public OnItemUpdate onItemUpdateCallback;
 
-    GameObject player;
+    private GameObject player;
 
     [SerializeField] private int toolBarSize = 5;
     public int ToolBarSize { get { return toolBarSize; } }

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class BackpackSlot : InventorySlot, IPointerEnterHandler, IPointerExitHandler
 {
 
-    
+
     [SerializeField] private Image imageIcon2;
     public Image ImageIcon2 { set { imageIcon2 = value; } }
-[SerializeField] private GameObject inventoryButton;
+    [SerializeField] private GameObject inventoryButton;
     [SerializeField] private GameObject switchContainerButton;
-  //  private bool isOnSlot;
+    //  private bool isOnSlot;
 
     private StorageUI storageUI;
 
@@ -46,7 +46,7 @@ public class BackpackSlot : InventorySlot, IPointerEnterHandler, IPointerExitHan
     {
         //ToolBar.instance.Remove(item);//removes the first item found in toolbar
         //  Inventory.instance.RemoveSpawn(item);
-        if(Item)
+        if (Item)
             PlayerInventory.instance.RemoveSpawn(StaticIndex);
     }
     public void UseItem()
@@ -59,7 +59,7 @@ public class BackpackSlot : InventorySlot, IPointerEnterHandler, IPointerExitHan
     }
     public void SwitchContainers()
     {
-       // Debug.Log("Switching containers");
+        // Debug.Log("Switching containers");
         if (Item)
             if (storageUI.CurrentInventory.Add(Item))
                 PlayerInventory.instance.Remove(StaticIndex);
@@ -80,7 +80,7 @@ public class BackpackSlot : InventorySlot, IPointerEnterHandler, IPointerExitHan
         }
     }
 
-   
+
 
 
     public override void AssignItemToolBar(int index)
@@ -93,22 +93,22 @@ public class BackpackSlot : InventorySlot, IPointerEnterHandler, IPointerExitHan
         }
 
     }
-  /*  public override void Update()
-    {
-        if (UIManager.instance.Backpack_UI.IsUIShown || UIManager.instance.Storage_UI.IsUIShown)
-        {
-            
-            if (isOnSlot)
-                HoveringOver();
-        }
-        else
-        {
-            isOnSlot = false;
-            Debug.Log("out " + StaticIndex);
+    /*  public override void Update()
+      {
+          if (UIManager.instance.Backpack_UI.IsUIShown || UIManager.instance.Storage_UI.IsUIShown)
+          {
 
-        }
-    }
+              if (isOnSlot)
+                  HoveringOver();
+          }
+          else
+          {
+              isOnSlot = false;
+              Debug.Log("out " + StaticIndex);
 
-    */
+          }
+      }
+
+      */
 
 }

@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonHandler : MonoBehaviour
 {
-    public Button customButton;
-    public BackpackSlot inventorySlot;
-    public RightClickButton rightClickButton;
+    [SerializeField] private Button customButton;
+    [SerializeField] private BackpackSlot inventorySlot;
+    [SerializeField] private RightClickButton rightClickButton;
     void Awake()
     {
         customButton.onClick.AddListener(InventoryButton_onClick); //subscribe to the onClick event

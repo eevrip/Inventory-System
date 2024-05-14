@@ -7,8 +7,8 @@ public class Stats
 {
     [SerializeField]
     private int baseValue;
-
     private int currentValue;
+    private int addOnValue;
 
     public Stats()
     {
@@ -16,27 +16,29 @@ public class Stats
     }
     public int GetValue()
     {
-       
-        return baseValue + currentValue;
+       //currentValue = baseValue + addOnValue;
+        return baseValue + addOnValue;
     }
-    public void SetValue(int addOn)
+    public void AddValue(int addOn)
     {
-        currentValue = addOn;
+        addOnValue = addOn;
+       // currentValue += addOnValue;
 
     }
     
-    /*public void SetValue(int newValue)
-    {
-        currentValue = newValue;
-        if(newValue< baseValue)
-        {
-            ResetValue();
-        }
-            
-        
-    }*/
-    public void ResetValue()
-    {
+    
+    public void RemoveValue(int removeVal) {
+    
+        addOnValue = -removeVal;
+    }
+    public int GetCurrentValue()
+    { 
+        currentValue = currentValue + addOnValue;
+        return currentValue;
+
+    }
+    public void ResetValue() {
         currentValue = baseValue;
+        addOnValue = 0;
     }
 }

@@ -7,7 +7,7 @@ public enum ItemType {
     Equipment,
     Resource,
     Tool,
-    Storage
+   Furniture
 }
 public abstract class ItemObject : ScriptableObject
 {

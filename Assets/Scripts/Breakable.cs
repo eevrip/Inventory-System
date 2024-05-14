@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour, IInteractable
 {
-    public int health;
+   [SerializeField] private int health;
     //GameObject breakableItem = transform.gameObject;
-    
-    public bool isBroken = false;
-    SpawningItem spawn;
 
-    [SerializeField]
-    private ItemObject item;
+    private bool isBroken = false;
+    private SpawningItem spawn;
+
+    [SerializeField] private ItemObject item;
     public ItemObject Item { get { return item; } set { item = value; } }
     public void Start()
     {

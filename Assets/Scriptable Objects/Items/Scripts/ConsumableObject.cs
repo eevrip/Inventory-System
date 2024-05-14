@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName  = "New Consumable Object", menuName = "Inventory System/Items/Consumable")]
 public class ConsumableObject : ItemObject
 {
-    public float food;
-    public float water;
-    public float health;
+    public int food;
+    public int water;
+    public int health;
     public void Awake() {
         type = ItemType.Consumable;
     }
@@ -16,8 +16,8 @@ public class ConsumableObject : ItemObject
         base.Use();
         //Consume item
         //Add food, water and health to current state
-        PlayerStateManager.instance.UpdateState(this);
+        PlayerStateManager.instance.onConsumableUpdate(this);
         //Remove from inventory
-        RemoveFromInventory();
+        //RemoveFromInventory();
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Camera cam;
-  IInteractable interactableItem;
+    private Camera cam;
+    private IInteractable interactableItem;
     [SerializeField] private float distanceCheck = 10f; //the distance of the ray
-    public LayerMask layerMask;
+    [SerializeField] private LayerMask layerMask;
 
     private UIManager uiManager;
 
@@ -38,13 +38,7 @@ public class PlayerController : MonoBehaviour
         { //If the ray hits something, in range distanceCheck
             interactableItem = hit.collider.transform.parent.gameObject.GetComponent<IInteractable>();
 
-           // interactableItem = hit.collider.transform.parent.gameObject.GetComponent<Collectable>();
-            /* if (interactableItem == null)
-                 interactableItem = hit.collider.transform.parent.gameObject.GetComponent<Breakable>();
-
-             if (interactableItem == null)
-                 interactableItem = hit.collider.transform.parent.gameObject.GetComponent<Storage>();
-            */
+           
             if (interactableItem != null)
             {
 
@@ -58,11 +52,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        //Place item that you hold
-        if (Input.GetMouseButtonDown(1))
-        { //Push the right mouse button down
-
-        }
+       
     }
 
 

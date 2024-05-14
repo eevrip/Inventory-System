@@ -19,11 +19,13 @@ public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHand
     public void SelectSlot()
     {   //Left click
        
-        if (Input.GetMouseButtonDown(0))
-        {
-            UseItem();
-        }
-        else if (Input.GetMouseButtonDown(1))
+      //  if (Input.GetMouseButtonDown(0))
+      //  {
+      //      UseItem();
+      //  }
+       // else
+       //right click
+       if (Input.GetMouseButtonDown(1))
         {
             DropItem();
         }
@@ -72,7 +74,7 @@ public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHand
        
        
     }
-    public void UseItem()
+   /* public void UseItem()
     {
         
         if (Item != null)
@@ -81,7 +83,7 @@ public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHand
                 Item.Use();
         }
 
-    }
+    }*/
 
 
     public override void AssignItemToolBar(int index)
