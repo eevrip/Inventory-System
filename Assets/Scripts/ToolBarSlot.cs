@@ -8,12 +8,14 @@ public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHand
   
     private bool isSelected = false;
     private ToolBarUI toolbarUI;
-    
 
+    [SerializeField]
+    private PlayerAnimation anim;
     public override void Start()
     {
         base.Start();
         toolbarUI = transform.parent.parent.GetComponent<ToolBarUI>();
+        anim = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerAnimation>();
     }
    
     public void SelectSlot()
@@ -27,6 +29,10 @@ public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHand
        //right click
        if (Input.GetMouseButtonDown(1))
         {
+            if (isSelected)
+            {
+                UnequipSlot();
+            }
             DropItem();
         }
     }
@@ -51,6 +57,8 @@ public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHand
             {
                 Debug.Log("Equip");
                 Item.EquipItem();
+                anim.SetLeftHandPickingUp();
+                
             }
         }
     }
@@ -62,6 +70,7 @@ public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHand
             {
                 Debug.Log("Unequip");
                 Item.UnequipItem();
+                anim.SetRightHandPickingUp();
             }
         }
     }

@@ -17,18 +17,20 @@ public class EquipmentManager : MonoBehaviour
     public delegate void equipmentUpdate(EquipmentObject item);
     public equipmentUpdate onEquipmentUpdateCallback;
     public int[] currEquipStats = new int[2];
-
+    private GameObject player;
+    
     void Start()
     {
         inventory = PlayerInventory.instance;
         int numSlots = System.Enum.GetNames(typeof(EquipmentKind)).Length;
         currEquipment = new EquipmentObject[numSlots]; //create array with the same dimensions as the number of the kinds of equipment
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void AddStats(EquipmentObject obj)
     {
         currEquipStats[0] = obj.defence;
+       
        // currEquipStats[1] = obj.defence;
         if (onEquipmentUpdateCallback != null)
             onEquipmentUpdateCallback.Invoke(obj);
@@ -53,5 +55,6 @@ public class EquipmentManager : MonoBehaviour
         }
         currEquipment[kindIndex] = newItem; //Find the kind of the equipment and place it to the right place
     }
+    
     
 }

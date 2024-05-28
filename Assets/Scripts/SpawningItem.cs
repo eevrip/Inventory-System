@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class SpawningItem : MonoBehaviour
 {
-    public void SpawnItem(Object obj, Vector3 pos, Quaternion rot, Transform trf)
+    public void SpawnItem(GameObject obj, Vector3 pos, Quaternion rot, Transform trf)
     {
 
         if (obj!= null)
         {
             Debug.Log("Spawn Item");
-            Instantiate(obj, pos, rot, trf);
-
+            GameObject temp;
+            temp = Instantiate(obj, pos, rot, trf);
+            temp.GetComponent<Rigidbody>().isKinematic = false;
         }
+
+
     }
 }

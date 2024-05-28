@@ -9,25 +9,26 @@ public class Breakable : MonoBehaviour, IInteractable
 
     private bool isBroken = false;
     private SpawningItem spawn;
-
+    [SerializeField]
+    private PlayerAnimation anim;
     [SerializeField] private ItemObject item;
     public ItemObject Item { get { return item; } set { item = value; } }
     public void Start()
     {
         spawn = GameObject.FindObjectOfType<SpawningItem>();
-
+        anim = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerAnimation>();
     }
    
     public void Interact()
     {
+       anim.SetIsAttacking();
+       StartCoroutine(ExecuteAfter(0.4f));
        
-       
-        BreakItem(PlayerStateManager.instance.damage.GetValue());
     }
 
     void BreakItem(int damage)
     {
-
+        
 
         health = health - damage; //Damage of equipment
         Debug.Log("Remaining strength " + health);
@@ -47,5 +48,12 @@ public class Breakable : MonoBehaviour, IInteractable
 
     }
 
-
+    private IEnumerator ExecuteAfter(float time)
+    {
+       
+        yield return new WaitForSeconds(time);
+        BreakItem(PlayerStateManager.instance.damage.GetValue());
+    }
 }
+
+
