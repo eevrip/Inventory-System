@@ -68,5 +68,8 @@ public class PlayerMovement : MonoBehaviour
     {
         return horizontalSpeed;
     }
-    
+    public void ResetHorizontalSpeed()
+    {
+        horizontalSpeed = 0f;
+    }
 }

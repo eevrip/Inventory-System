@@ -41,6 +41,7 @@ public class BackpackUI : InventoryUI
     public override void ShowInventory()
     {
         base.ShowInventory();
+        playerMvm.ResetHorizontalSpeed();
         playerMvm.enabled = false;
         ShowCursor.instance.CursorEnabled();
         Cursor.lockState = CursorLockMode.Confined; //Mouse Cursor appears and cannot escape the screen boundaries Confined wasnt working properly
@@ -49,6 +50,7 @@ public class BackpackUI : InventoryUI
     public override void CloseInventory()
     {
         base.CloseInventory();
+       
         playerMvm.enabled = true;
         ShowCursor.instance.CursorDisabled();
         Cursor.lockState = CursorLockMode.Locked; //Mouse Cursor is locked to the center of the screen

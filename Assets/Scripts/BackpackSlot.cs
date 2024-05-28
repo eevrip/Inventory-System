@@ -54,8 +54,9 @@ public class BackpackSlot : InventorySlot, IPointerEnterHandler, IPointerExitHan
         if (Item)
         {
             Item.Use();
+            PlayerInventory.instance.Remove(StaticIndex);
         }
-
+        
     }
     public void SwitchContainers()
     {

@@ -17,7 +17,24 @@ public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHand
         toolbarUI = transform.parent.parent.GetComponent<ToolBarUI>();
         anim = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerAnimation>();
     }
-   
+
+    public override void ClearSlot()
+    {
+       
+        if (isSelected)
+        {
+            UnequipSlot();
+        }
+        base.ClearSlot();
+    }
+    public override void AddItem(ItemObject newItem)
+    {
+        base.AddItem(newItem);
+        if (isSelected)
+        {
+            EquipSlot();
+        }
+    }
     public void SelectSlot()
     {   //Left click
        
