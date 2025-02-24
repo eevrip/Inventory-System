@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 2850838596002067179, guid: 6f3495760c5fee64e8cc125df5ace2dd, type: 3}
   type: 0
-  title: 
-  description: Edible mushroom
+  title: Mushroom
+  description: 'Edible mushroom.
+
+'
   icon: {fileID: 21300000, guid: eada3310f4f609a4ba0c0dd3cf66686b, type: 3}
   ID: 3
+  canBeCrafted: 0
   food: 5
   water: 2
   health: 0

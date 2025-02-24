@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3373391705402236545, guid: d9f3aa9b4a518124f975bc613b5b6551, type: 3}
   type: 0
-  title: 
+  title: Water
   description: Keeps you hydrate
   icon: {fileID: 21300000, guid: 80be01c7e11db284bbe70ce2f08af735, type: 3}
   ID: 5
+  canBeCrafted: 0
   food: 0
   water: 20
   health: 0

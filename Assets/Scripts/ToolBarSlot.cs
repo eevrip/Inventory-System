@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class ToolBarSlot : InventorySlot, IPointerEnterHandler, IPointerExitHandler
+public class ToolBarSlot : InventorySlot//, IPointerEnterHandler, IPointerExitHandler
 {
     
     [SerializeField] private GameObject slotHighlight;

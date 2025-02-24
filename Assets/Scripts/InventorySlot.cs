@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class InventorySlot : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
+using System.Collections;
+
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     private ItemObject item;
@@ -10,6 +12,9 @@ public class InventorySlot : MonoBehaviour//, IPointerEnterHandler, IPointerExit
     public ItemObject Item => item;
     public Image ImageIcon => imageIcon;
     public int StaticIndex => staticIndex;
+
+    private Coroutine delayToolTip;
+    public Coroutine DelayToolTip => delayToolTip;
 
     private bool isOnSlot;
     public bool IsOnSlot
@@ -32,10 +37,13 @@ public class InventorySlot : MonoBehaviour//, IPointerEnterHandler, IPointerExit
         item = newItem;
         imageIcon.sprite = item.icon;
         imageIcon.enabled = true;
+      
 
-        
-
-
+      //Update tooltip details if the item is updated
+        if(item && isOnSlot)
+        {
+            ToolTipManager.instance.SetToolTip(item.description, item.title, item);
+        }
 
     }
     
@@ -47,9 +55,13 @@ public class InventorySlot : MonoBehaviour//, IPointerEnterHandler, IPointerExit
             item = null;
             imageIcon.sprite = null;
             imageIcon.enabled = false;
+            
         }
-      
 
+        if (delayToolTip != null)
+        {
+            StopCoroutine(delayToolTip);
+        }
 
     }
     public virtual void UpdateMode(bool isInventoryMode)
@@ -61,15 +73,28 @@ public class InventorySlot : MonoBehaviour//, IPointerEnterHandler, IPointerExit
     public void OnPointerEnter(PointerEventData eventData)
     {
         isOnSlot = true;
+        //Show description of item
+        if (item)
+        {
+            ToolTipManager.instance.SetToolTip(item.description, item.title, item);
+            delayToolTip = StartCoroutine(delayShow());
+            
+        }
         Debug.Log("in " + StaticIndex);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
 
         isOnSlot = false;
+        if (delayToolTip != null)
+        {
+            StopCoroutine(delayToolTip);
+        }
+        ToolTipManager.instance.HideToolTip();
         Debug.Log("out " + StaticIndex);
     }
 
+   
     public void OnDisable()
     {
         isOnSlot = false;
@@ -105,6 +130,10 @@ public class InventorySlot : MonoBehaviour//, IPointerEnterHandler, IPointerExit
 
         if (index != -1)
             AssignItemToolBar(index);
+        if (!item)
+        {
+            ToolTipManager.instance.HideToolTip();
+        }
     }
 
 
@@ -121,6 +150,12 @@ public class InventorySlot : MonoBehaviour//, IPointerEnterHandler, IPointerExit
           if (isOnSlot)
               HoveringOver();
        }
+    IEnumerator delayShow()
+    {
 
+        yield return new WaitForSeconds(1f);
+        if(item)
+            ToolTipManager.instance.ShowToolTip(this.GetComponent<RectTransform>());
+    }
 
 }

@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using System.Linq;
+using static UnityEngine.Networking.UnityWebRequest;
 
 public class PlayerInventory : Inventory
 {
@@ -57,7 +61,18 @@ public class PlayerInventory : Inventory
             onItemUpdateCallback.Invoke();
         return true;
     }
-   
+    public override void Remove(ItemObject item)
+    {
+        int idx = InventoryContainer.Inventory.IndexOf(item);
+        int toolBarSlot = GetToolBarIndex(idx);
+        if (toolBarSlot != -1)
+            RemoveToolBarOnly(toolBarSlot);
+        AdjustPairing(false, idx);
+        InventoryContainer.RemoveFromInventory(item);
+        if (onItemUpdateCallback != null)
+            onItemUpdateCallback.Invoke();
+
+    }
     //Removes item from inventory and toolbar and spawn it to the world given the inventory slot index
     public void RemoveSpawn(int index)
     {
@@ -104,8 +119,29 @@ public class PlayerInventory : Inventory
 
     }
 
+    //Find amount of occurances of specific item
+    public int AmountOf(ItemObject item)
+    {
+        int count = InventoryContainer.Inventory.Count(x => x.ID == item.ID);
+        return count;
+        //List<ItemObject> occurances = InventoryContainer.Inventory.FindAll();
+      //  Debug.Log("Amount of " + item.name + " " + occurances.Count);
+      //  return occurances.Count;
+    }
 
-
+    //Remove amount of a specific item from inventory (For crafting)
+    public void RemoveItems(ItemObject requiredItem, int amount)
+    {
+        int removed = 0;
+        for(int i = inventoryContainer.Inventory.Count - 1; i >= 0 && removed < amount; i--)
+        {
+            if (inventoryContainer.Inventory[i].ID == requiredItem.ID)
+            {
+                Remove(i);
+                removed++;
+            }
+        }
+    }
 
     //Assigns an item at a specified position in toolbar. It already exists in the backpack
 

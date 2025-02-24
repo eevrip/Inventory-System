@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class BackpackSlot : InventorySlot, IPointerEnterHandler, IPointerExitHandler
+public class BackpackSlot : InventorySlot //, IPointerEnterHandler, IPointerExitHandler
 {
 
 

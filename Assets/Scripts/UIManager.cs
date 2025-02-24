@@ -13,9 +13,10 @@ public class UIManager : MonoBehaviour
     #endregion
     [SerializeField] private BackpackUI backpackUI;
     [SerializeField] private StorageUI storageUI;
-
-      public BackpackUI Backpack_UI => backpackUI;
+    [SerializeField] private CraftingUI craftingUI;
+    public BackpackUI Backpack_UI => backpackUI;
       public StorageUI Storage_UI => storageUI;
+    public CraftingUI Crafting_UI => craftingUI;
 
     private bool isStorageOpen = false;
     public bool IsStorageOpen { get { return isStorageOpen; } }
@@ -53,8 +54,10 @@ public class UIManager : MonoBehaviour
         else //Storage is enabled
         {
             isUIEnabled = true;
-            if (Input.GetButtonDown("Esc"))
+            
+            if (Input.GetKeyDown(KeyCode.E))//Input.GetButtonDown("Esc"))
             {
+                
                 isUIEnabled = false;
                
                 storageUI.CloseInventory();

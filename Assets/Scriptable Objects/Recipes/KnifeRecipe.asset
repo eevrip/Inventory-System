@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97cefa8aad23b54480cd887280f77cb, type: 3}
+  m_Name: KnifeRecipe
+  m_EditorClassIdentifier: 
+  recipeName: Knife
+  ingredients:
+  - {fileID: 11400000, guid: 197041a2edcff584a9e417d68698539a, type: 2}
+  - {fileID: 11400000, guid: b108b6da544f6044a95bf9009a4eedc8, type: 2}
+  - {fileID: 11400000, guid: b108b6da544f6044a95bf9009a4eedc8, type: 2}
+  - {fileID: 11400000, guid: b108b6da544f6044a95bf9009a4eedc8, type: 2}
+  - {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
+  - {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
+  resultItem: {fileID: 11400000, guid: 3fe8f1c9e48ac774a96979a5d0de85cb, type: 2}

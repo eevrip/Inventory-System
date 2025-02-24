@@ -18,7 +18,7 @@ public abstract class ItemObject : ScriptableObject
     public string description;
     public Sprite icon;
     public int ID = -1;
-    
+    public bool canBeCrafted;
     public virtual void Use() {
 
         Debug.Log("Use " + prefab.name);
@@ -33,6 +33,7 @@ public abstract class ItemObject : ScriptableObject
 
         Debug.Log("Equip " + prefab.name);
     }
+   
     //Removes from inventory/toolbar. This doesn't include spawning the item into the world
     public void RemoveFromInventory() {
        // Inventory.instance.Remove(this);
