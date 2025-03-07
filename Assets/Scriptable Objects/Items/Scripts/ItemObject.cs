@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ItemType { 
+     Resource,
     Consumable,
-    Equipment,
-    Resource,
     Tool,
+    Equipment,
    Furniture
 }
 public abstract class ItemObject : ScriptableObject

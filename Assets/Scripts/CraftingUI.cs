@@ -1,91 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class CraftingUI : MonoBehaviour
 {
-    private List<Recipe> allRecipes;
-    public List<Recipe> AllRecipes => allRecipes;
-
-
+    
     public GameObject recipeButtonGO;
-    public GameObject resourceSlotGO;
+  
 
 
-    public GameObject mainMenuPanel;
+    public GameObject craftingMenuPanel;
 
-    public GameObject subcategoryPanel;
+    public RecipesSubcategoryUI subcategoryPanel;
    
 
-    private TextMeshProUGUI subcategoryPanelTxt;
-    private List<Recipe> subcategoryPanelRecipes = new List<Recipe>();
+    
+   
 
-    public GameObject recipePanel;
-    private TextMeshProUGUI recipePanelTxt;
-    private List<ItemObject> recipePanelIngredients = new List<ItemObject>();
+    public RecipePanelUI recipePanel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        subcategoryPanelTxt = subcategoryPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    private bool isUIShown;
+    public bool IsUIShown => isUIShown;
+   
     public void OpenCraftingMenu()
     {
-        mainMenuPanel.SetActive(true);
+        isUIShown = true;
+        UIManager.instance.MouseMovementEnabled();
+        craftingMenuPanel.SetActive(true);
+      
     }
     public void CloseCraftingMenu()
     {
-        mainMenuPanel.SetActive(false);
+        UIManager.instance.MouseMovementDisabled();
         CloseRecipePanel();
-        CloseSubCategoryPanel();
+        CloseSubCategoryPanel(); 
+        craftingMenuPanel.SetActive(false);
+        isUIShown=false;
     }
     public void OpenSubCategoryPanel(int type)
-    {
-        switch (type)
-        {
-            case (0)://Consumable
-                subcategoryPanelTxt.text = "Consumables";
-                break;
-            case (1)://Equipment
-                subcategoryPanelTxt.text = "Equipment";
-                break;
-                
-            case (2)://Resource
-                subcategoryPanelTxt.text = "Resources";
-                break;
-            case (3)://Tool
-                subcategoryPanelTxt.text = "Tools";
-                break;
-            case (4)://Furniture
-                subcategoryPanelTxt.text = "Furniture";
-                break;
+    { //depending on Type
 
-        }
-        //depending on Type
-        subcategoryPanel.SetActive(true);
+        subcategoryPanel.UpdatePanelDetails(type);
+        
+       
+        subcategoryPanel.gameObject.SetActive(true);
     }
+    
     public void CloseSubCategoryPanel()
     {
-        subcategoryPanel.SetActive(false);
+        subcategoryPanel.gameObject.SetActive(false);
     }
-    public void OpenRecipePanel()
+    public void OpenRecipePanel(Recipe recipe)
     {
         //depending on recipe
-        recipePanel.SetActive(true);    
+        recipePanel.UpdatePanelDetails(recipe);
+        if (!recipePanel.gameObject.activeSelf)
+        {
+            recipePanel.gameObject.SetActive(true);
+        }   
     }
     public void CloseRecipePanel()
     {
-        recipePanel.SetActive(false );
+        recipePanel.gameObject.SetActive(false );
     }
-    public void Craft(Recipe recipe)
-    {
-        recipe.Craft(PlayerInventory.instance);
-    }
+    
+    
 }

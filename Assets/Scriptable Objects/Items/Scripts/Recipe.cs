@@ -50,6 +50,7 @@ public class Recipe : ScriptableObject
         return true;
 
     }
+    
     public bool Craft(PlayerInventory inventory)
     {
         if (CanCraft(inventory))

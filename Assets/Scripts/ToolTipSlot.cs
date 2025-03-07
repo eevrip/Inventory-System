@@ -8,7 +8,9 @@ public class ToolTipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 {
     private ItemObject item;
 
-    public ItemObject Item => item;
+    public ItemObject Item { get { return item;
+}
+        set { item = value; }}
 
     private Coroutine delayToolTip;
     public Coroutine DelayToolTip => delayToolTip;

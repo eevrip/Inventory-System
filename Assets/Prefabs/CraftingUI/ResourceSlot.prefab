@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 6724909858403781725}
   - component: {fileID: 999043721343284390}
   - component: {fileID: 7907371247960888655}
+  - component: {fileID: 2416691195864812133}
   m_Layer: 5
   m_Name: ResourceSlot
   m_TagString: Untagged
@@ -230,3 +231,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2416691195864812133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3957653970259554365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea99eecffeeee1449f8e1129c125bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  img: {fileID: 3967426941719240148}
+  hasItem: {fileID: 6028356302151726950}

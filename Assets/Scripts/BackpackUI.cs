@@ -38,7 +38,7 @@ public class BackpackUI : InventoryUI
         }
     }
 
-    public override void ShowInventory()
+   /* public override void ShowInventory()
     {
         base.ShowInventory();
         playerMvm.ResetHorizontalSpeed();
@@ -55,5 +55,5 @@ public class BackpackUI : InventoryUI
         ShowCursor.instance.CursorDisabled();
         Cursor.lockState = CursorLockMode.Locked; //Mouse Cursor is locked to the center of the screen
         mouseCursor.enabled = true;
-    }
+    }*/
 }
