@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f211b53593b32df43970c4abb5a3dd4d, type: 3}
+  m_Name: Pickaxe
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3975852738622016745, guid: ad3ae7f022107a9438790ef7837314d7, type: 3}
+  type: 2
+  title: Pickaxe
+  description: Can used to break rocks faster.
+  icon: {fileID: 0}
+  ID: 15
+  canBeCrafted: 0
+  damage: 5
+  toolKind: 1

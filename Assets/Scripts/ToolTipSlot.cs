@@ -6,25 +6,51 @@ using static UnityEditor.Progress;
 
 public class ToolTipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private bool showOnlyText;
+    [SerializeField] private string textToShow;
     private ItemObject item;
 
-    public ItemObject Item { get { return item;
-}
-        set { item = value; }}
+    public ItemObject Item
+    {
+        get
+        {
+            return item;
+        }
+        set { item = value; }
+    }
 
     private Coroutine delayToolTip;
     public Coroutine DelayToolTip => delayToolTip;
     public void OnPointerEnter(PointerEventData eventData)
-    { 
-        ToolTipManager.instance.SetToolTipOnlyName(item.title);
-        delayToolTip = StartCoroutine(delayShow());
+    {
+       
+        if (showOnlyText) {
+            if (textToShow != "")
+            {
+               
+                ToolTipManager.instance.SetToolTipOnlyName(textToShow);
+            }
+            else if (item)
+            {
+               
+                ToolTipManager.instance.SetToolTipOnlyName(item.title);
+            }
+        }
+        else
+        {
+            ToolTipManager.instance.SetToolTip(item);
+        }
+
+        // delayToolTip = StartCoroutine(delayShow());
+        ToolTipManager.instance.ShowToolTip(this.GetComponent<RectTransform>());
+
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (delayToolTip != null)
-        {
-            StopCoroutine(delayToolTip);
-        }
+      //  if (delayToolTip != null)
+       // {
+      //      StopCoroutine(delayToolTip);
+      //  }
         ToolTipManager.instance.HideToolTip();
     }
 
@@ -34,9 +60,9 @@ public class ToolTipSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     IEnumerator delayShow()
     {
 
-        yield return new WaitForSeconds(1f);
-        if (item)
-            ToolTipManager.instance.ShowToolTip(this.GetComponent<RectTransform>());
+        yield return new WaitForSeconds(0f);
+       
+        ToolTipManager.instance.ShowToolTip(this.GetComponent<RectTransform>());
     }
 
 }

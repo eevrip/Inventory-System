@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
     {
         isStorageOpen = storageUI.IsUIShown;
         isCraftingTableOpen = craftingUI.IsUIShown;
-        if (!isStorageOpen)// && !isCraftingTableOpen) //Storage is not enabled
+        if (!isStorageOpen && !isCraftingTableOpen) //Storage is not enabled
         {
             if (Input.GetButtonDown("Tab")) //If button tab is pressed then the UI for the inventory appears
             {
@@ -67,10 +67,11 @@ public class UIManager : MonoBehaviour
                 {   isUIEnabled = false;
                     MouseMovementDisabled();
                     backpackUI.CloseInventory();
+                    ToolTipManager.instance.HideToolTip();
                 }
             }
         }
-        else if(isStorageOpen) //Storage is enabled
+        if(isStorageOpen) //Storage is enabled
         {
             isUIEnabled = true;
             
@@ -81,6 +82,7 @@ public class UIManager : MonoBehaviour
                // MouseMovementDisabled();
                 storageUI.CloseInventory();
                 backpackUI.CloseInventory();
+                ToolTipManager.instance.HideToolTip();
                 wasStorageClosed = true;
 
 
@@ -88,8 +90,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        //The crafting menu is open
-       /* else if (isCraftingTableOpen)
+      if (isCraftingTableOpen)
         {
             isUIEnabled = true;
 
@@ -97,13 +98,14 @@ public class UIManager : MonoBehaviour
             {
 
                 isUIEnabled = false;
-
+               
+                ToolTipManager.instance.HideToolTip();
                 craftingUI.CloseCraftingMenu();
 
 
 
             }
-        }*/
+        }
         
 
     }

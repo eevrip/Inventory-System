@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8862650e733ae3e4ea49da0a5987dfab, type: 3}
+  m_Name: BerryJuice
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2567467593481034127, guid: b44345028f0a75944a5a88ff981e8909, type: 3}
+  type: 1
+  title: Berry Juice
+  description: Yummy berry juice. Both delicious and nutricious!
+  icon: {fileID: 0}
+  ID: 12
+  canBeCrafted: 0
+  food: 3
+  water: 10
+  health: 5

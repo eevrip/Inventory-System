@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ArmorRecipe
   m_EditorClassIdentifier: 
   recipeName: Armor
-  ingredients:
-  - {fileID: 11400000, guid: 197041a2edcff584a9e417d68698539a, type: 2}
   resultItem: {fileID: 11400000, guid: 95b603455c313304385c2c914f9295b7, type: 2}
+  ingredients:
+  - amount: 2
+    item: {fileID: 11400000, guid: 197041a2edcff584a9e417d68698539a, type: 2}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8862650e733ae3e4ea49da0a5987dfab, type: 3}
+  m_Name: Berries
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8769846971884980911, guid: b648030a426beda4980a0b79fd5739fb, type: 3}
+  type: 1
+  title: Berries
+  description: Sweet and tasty treats
+  icon: {fileID: 21300000, guid: 63406dc92f29dc84a8d87cce11c53428, type: 3}
+  ID: 9
+  canBeCrafted: 0
+  food: 1
+  water: 1
+  health: 1

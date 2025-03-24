@@ -47,7 +47,10 @@ public class BackpackSlot : InventorySlot //, IPointerEnterHandler, IPointerExit
         //ToolBar.instance.Remove(item);//removes the first item found in toolbar
         //  Inventory.instance.RemoveSpawn(item);
         if (Item)
+        {
+            Item.Remove();
             PlayerInventory.instance.RemoveSpawn(StaticIndex);
+        }
     }
     public void UseItem()
     {

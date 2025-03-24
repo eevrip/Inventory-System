@@ -97,8 +97,9 @@ public class ToolBarSlot : InventorySlot//, IPointerEnterHandler, IPointerExitHa
     {
       //Remove and spawn item given a specific position at toolbar
         PlayerInventory.instance.RemoveSpawnToolBar(StaticIndex);
-       
-       
+        Item.Remove();
+
+
     }
    /* public void UseItem()
     {

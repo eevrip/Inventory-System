@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SmallStorageRecipe
   m_EditorClassIdentifier: 
   recipeName: Small Storage
-  ingredients:
-  - {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
-  - {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
   resultItem: {fileID: 11400000, guid: 3fdf2f272fa861646b663f4750101fe9, type: 2}
+  ingredients:
+  - amount: 2
+    item: {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}

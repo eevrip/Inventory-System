@@ -24,6 +24,7 @@ public class RecipesSubcategoryUI : MonoBehaviour
     }
     public void UpdatePanelDetails(int type)
     {
+        
         switch (type)
         {
             case (0)://Resource
@@ -45,6 +46,7 @@ public class RecipesSubcategoryUI : MonoBehaviour
 
 
         }
+        
         ShowRecipeBundle(type);
     }
 
@@ -82,7 +84,18 @@ public class RecipesSubcategoryUI : MonoBehaviour
        
         foreach (var buttons in buttonPool)
         {
+            buttons.DeactivateHighlight();
             buttons.gameObject.SetActive(false);
+        }
+
+    }
+
+    public void DeactivateHighlight()
+    {
+        foreach (var buttons in buttonPool)
+        {
+            buttons.DeactivateHighlight();
+           
         }
 
     }

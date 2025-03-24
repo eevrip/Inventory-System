@@ -36,10 +36,10 @@ public class Collectable : MonoBehaviour, IInteractable
         if (isPickedUp)
         {
           
-            Debug.Log("Picked Up Item");
-            
-              // if( anim.SetIsPickingUp())
-                    Destroy(gameObject,0.1f);
+           // Debug.Log("Picked Up Item");
+            PopUpMessagesManager.instance.ShowPopUpMessage("+ " + item.title);
+            // if( anim.SetIsPickingUp())
+            Destroy(gameObject,0.1f);
             }
         
         

@@ -22,10 +22,12 @@ public class InventorySystem
     {
         if(inventory.Count >= inventorySize)
         {
-            Debug.Log("Inventory full");
+            //Debug.Log("Inventory full");
+            PopUpMessagesManager.instance.ShowPopUpMessage("Inventory full");
             return false;
         }
        inventory.Add(item);
+       
         inventory.Sort(ComparingID);
         return true;
     }

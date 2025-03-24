@@ -5,6 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using System.Linq;
 using static UnityEngine.Networking.UnityWebRequest;
+using static UnityEditor.Progress;
 
 public class PlayerInventory : Inventory
 {
@@ -69,6 +70,7 @@ public class PlayerInventory : Inventory
             RemoveToolBarOnly(toolBarSlot);
         AdjustPairing(false, idx);
         InventoryContainer.RemoveFromInventory(item);
+       
         if (onItemUpdateCallback != null)
             onItemUpdateCallback.Invoke();
 
@@ -85,6 +87,7 @@ public class PlayerInventory : Inventory
         AdjustPairing(false, index);
         //Spawn Item on the ground 
         SpawnItem(item);
+
 
         if (onItemUpdateCallback != null)
             onItemUpdateCallback.Invoke();
@@ -116,7 +119,7 @@ public class PlayerInventory : Inventory
         GameObject temp;
         temp = Instantiate(item.prefab, newPos, Quaternion.identity, environment);  //
         temp.GetComponent<Rigidbody>().isKinematic = false;
-
+       // PopUpMessagesManager.instance.ShowPopUpMessage("- " + item.title);
     }
 
     //Find amount of occurances of specific item
@@ -141,6 +144,7 @@ public class PlayerInventory : Inventory
                 removed++;
             }
         }
+       // PopUpMessagesManager.instance.ShowPopUpMessage("- " + requiredItem.title + " amount");
     }
 
     //Assigns an item at a specified position in toolbar. It already exists in the backpack

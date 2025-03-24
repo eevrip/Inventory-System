@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Rendering;
 
 public class ToolTipManager : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class ToolTipManager : MonoBehaviour
     }
 
 
-    public void SetToolTip(string description, string header, ItemObject item)
+    public void SetToolTip(ItemObject item)
     {
         SetAllTextActive(true);
         if (item.type == ItemType.Consumable)
@@ -100,15 +101,23 @@ public class ToolTipManager : MonoBehaviour
         else
         {
             SetAllTextActive(false);
+            this.description.gameObject.SetActive(true);
+            this.header.gameObject.SetActive(true);
+
         }
-        this.header.text = header;
-        this.description.text = description;
+        this.header.text = item.title;
+        this.description.text = item.description;
 
     }
     public void SetToolTipOnlyName(string header)
     {
-        this.header.text = header;
-        SetAllTextActive(false);
+       // this.header.alignment = TextAlignmentOptions.Center;
+       SetAllTextActive(false);
+       
+        this.header.text = header; 
+        //this.description.text = string.Empty; 
+        this.header.gameObject.SetActive(true);
+        
     }
     public void ShowToolTip(RectTransform rect)
     {
@@ -154,6 +163,8 @@ public class ToolTipManager : MonoBehaviour
     }
     public void SetAllTextActive(bool active)
     {
+        this.description.gameObject.SetActive(active);
+        this.header.gameObject.SetActive(active);
         this.damage.gameObject.SetActive(active);
         this.defence.gameObject.SetActive(active);
         this.food.gameObject.SetActive(active);

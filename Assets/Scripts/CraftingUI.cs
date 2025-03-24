@@ -14,7 +14,8 @@ public class CraftingUI : MonoBehaviour
     public GameObject craftingMenuPanel;
 
     public RecipesSubcategoryUI subcategoryPanel;
-   
+
+    public GameObject textSubcategory;
 
     
    
@@ -23,7 +24,10 @@ public class CraftingUI : MonoBehaviour
 
     private bool isUIShown;
     public bool IsUIShown => isUIShown;
-   
+    [SerializeField]
+    private List<GameObject> mainMenuHighlights = new List<GameObject>();
+
+    
     public void OpenCraftingMenu()
     {
         isUIShown = true;
@@ -41,9 +45,9 @@ public class CraftingUI : MonoBehaviour
     }
     public void OpenSubCategoryPanel(int type)
     { //depending on Type
-
+       DeactivateAllHighlights();
         subcategoryPanel.UpdatePanelDetails(type);
-        
+         textSubcategory.SetActive(true);
        
         subcategoryPanel.gameObject.SetActive(true);
     }
@@ -51,6 +55,7 @@ public class CraftingUI : MonoBehaviour
     public void CloseSubCategoryPanel()
     {
         subcategoryPanel.gameObject.SetActive(false);
+        textSubcategory.gameObject.SetActive(false);
     }
     public void OpenRecipePanel(Recipe recipe)
     {
@@ -66,5 +71,9 @@ public class CraftingUI : MonoBehaviour
         recipePanel.gameObject.SetActive(false );
     }
     
-    
+    public void DeactivateAllHighlights()
+    {
+        foreach (GameObject highlight in mainMenuHighlights)
+            highlight.SetActive(false);
+    }
 }

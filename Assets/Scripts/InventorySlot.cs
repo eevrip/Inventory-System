@@ -42,7 +42,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
       //Update tooltip details if the item is updated
         if(item && isOnSlot)
         {
-            ToolTipManager.instance.SetToolTip(item.description, item.title, item);
+            ToolTipManager.instance.SetToolTip(item);
         }
 
     }
@@ -58,10 +58,10 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             
         }
 
-        if (delayToolTip != null)
-        {
-            StopCoroutine(delayToolTip);
-        }
+       // if (delayToolTip != null)
+        //{
+       //     StopCoroutine(delayToolTip);
+       // }
 
     }
     public virtual void UpdateMode(bool isInventoryMode)
@@ -76,9 +76,10 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         //Show description of item
         if (item)
         {
-            ToolTipManager.instance.SetToolTip(item.description, item.title, item);
-            delayToolTip = StartCoroutine(delayShow());
-            
+            ToolTipManager.instance.SetToolTip(item);
+            ToolTipManager.instance.ShowToolTip(this.GetComponent<RectTransform>());
+            //delayToolTip = StartCoroutine(delayShow());
+
         }
         Debug.Log("in " + StaticIndex);
     }
@@ -86,10 +87,10 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
 
         isOnSlot = false;
-        if (delayToolTip != null)
-        {
-            StopCoroutine(delayToolTip);
-        }
+        //if (delayToolTip != null)
+       // {
+       //     StopCoroutine(delayToolTip);
+      //  }
         ToolTipManager.instance.HideToolTip();
         Debug.Log("out " + StaticIndex);
     }

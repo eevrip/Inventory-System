@@ -45,10 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7ebf518ea682a4bb28ef25bf1f9706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  health: 6
+  anim: {fileID: 0}
   item: {fileID: 11400000, guid: 197041a2edcff584a9e417d68698539a, type: 2}
-  health: 4
-  isBroken: 0
 --- !u!1 &4224828193669164327
 GameObject:
   m_ObjectHideFlags: 0

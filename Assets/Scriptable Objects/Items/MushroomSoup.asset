@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8862650e733ae3e4ea49da0a5987dfab, type: 3}
   m_Name: MushroomSoup
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4862885302632861871, guid: e05a6ea422a21bb439deb4131e1d110d, type: 3}
+  prefab: {fileID: 9172458620206628427, guid: 36b78148ce026a842b44177735252610, type: 3}
   type: 1
   title: Mushroom Soup
   description: Fills and warms your tummy.
   icon: {fileID: 21300000, guid: eada3310f4f609a4ba0c0dd3cf66686b, type: 3}
   ID: 9
   canBeCrafted: 0
-  food: 10
+  food: 7
   water: 10
-  health: 3
+  health: 5

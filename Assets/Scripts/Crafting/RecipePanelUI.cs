@@ -6,7 +6,8 @@ using UnityEngine;
 public class RecipePanelUI : MonoBehaviour
 {
     
-    public TextMeshProUGUI recipePanelTxt;
+    public TextMeshProUGUI recipeTitle;
+    [SerializeField] private TextMeshProUGUI description;
     public List<ResourceSlotUI> resourcePool = new List<ResourceSlotUI>();
     private Recipe currentRecipe;
 
@@ -21,8 +22,8 @@ public class RecipePanelUI : MonoBehaviour
     public void UpdatePanelDetails(Recipe recipe)
     {
         currentRecipe = recipe;
-        recipePanelTxt.text = recipe.recipeName;
-
+        recipeTitle.text = recipe.recipeName;
+        description.text = recipe.resultItem.description;
         ShowResources(recipe);
     }
 
@@ -31,9 +32,9 @@ public class RecipePanelUI : MonoBehaviour
 
         ResetResources();
         //activate the number of gameobjects equal to the length list
-        for (int i = 0; i < recipe.ingredients.Count; i++)
+        for (int i = 0; i < recipe.Ingredients.Count; i++)
         {
-            resourcePool[i].UpdateDetails(recipe.ingredients[i]);
+            resourcePool[i].UpdateDetails(recipe.Ingredients[i]);
             resourcePool[i].gameObject.SetActive(true);
         }
 
@@ -47,7 +48,19 @@ public class RecipePanelUI : MonoBehaviour
     }
     public void Craft()
     {
-        if(currentRecipe != null)
-            currentRecipe.Craft(PlayerInventory.instance);
+        bool canCraft = false;
+        if (currentRecipe != null) {
+            canCraft = currentRecipe.Craft(PlayerInventory.instance);
+            if (!canCraft)
+            {
+                Debug.Log("Dont have enough ingredients");
+            }
+        }
+            
+        for (int i = 0; i < currentRecipe.Ingredients.Count; i++)
+        {
+            resourcePool[i].UpdateDetails(currentRecipe.Ingredients[i]);
+           
+        }
     }
 }

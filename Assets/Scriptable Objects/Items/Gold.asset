@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33bb06039df575e41bed995e711edfde, type: 3}
+  m_Name: Gold
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6238562228292339514, guid: 897321d37fad774479d088fe3e2a3cb6, type: 3}
+  type: 0
+  title: Gold ore
+  description: Strong material. Can be used in crafting.
+  icon: {fileID: 21300000, guid: 6e6ce8ffcac44c8458ca831d0b98fb75, type: 3}
+  ID: 11
+  canBeCrafted: 0

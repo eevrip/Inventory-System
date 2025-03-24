@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: KnifeRecipe
   m_EditorClassIdentifier: 
   recipeName: Knife
-  ingredients:
-  - {fileID: 11400000, guid: 197041a2edcff584a9e417d68698539a, type: 2}
-  - {fileID: 11400000, guid: b108b6da544f6044a95bf9009a4eedc8, type: 2}
-  - {fileID: 11400000, guid: b108b6da544f6044a95bf9009a4eedc8, type: 2}
-  - {fileID: 11400000, guid: b108b6da544f6044a95bf9009a4eedc8, type: 2}
-  - {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
-  - {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
   resultItem: {fileID: 11400000, guid: 3fe8f1c9e48ac774a96979a5d0de85cb, type: 2}
+  ingredients:
+  - amount: 2
+    item: {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 197041a2edcff584a9e417d68698539a, type: 2}

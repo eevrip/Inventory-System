@@ -22,6 +22,7 @@ public abstract class ItemObject : ScriptableObject
     public virtual void Use() {
 
         Debug.Log("Use " + prefab.name);
+       // PopUpMessagesManager.instance.ShowPopUpMessage("- " + title);
     }
     public virtual void UnequipItem()
     {
@@ -34,9 +35,10 @@ public abstract class ItemObject : ScriptableObject
         Debug.Log("Equip " + prefab.name);
     }
    
-    //Removes from inventory/toolbar. This doesn't include spawning the item into the world
-    public void RemoveFromInventory() {
-       // Inventory.instance.Remove(this);
+    //Removes item
+    public void Remove() {
+
+        PopUpMessagesManager.instance.ShowPopUpMessage("- " + title);
     }
 
     

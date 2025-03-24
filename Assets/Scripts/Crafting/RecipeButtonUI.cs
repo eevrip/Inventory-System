@@ -5,10 +5,12 @@ using TMPro;
 using UnityEngine.UI;
 
 
-public class RecipeButtonUI : MonoBehaviour
+public class RecipeButtonUI : ToolTipSlot
 {
-    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI title;
+   
     [SerializeField] private Image img;
+    [SerializeField] private GameObject highlight;
     private Recipe recipe;
     public Button recipeButton;
     public Recipe ButtonRecipe => recipe;
@@ -23,14 +25,19 @@ public class RecipeButtonUI : MonoBehaviour
     public void UpdateDetails(Recipe recipe)
     {
         
-        text.text = recipe.recipeName;
+        title.text = recipe.recipeName;
+       
         img.sprite = recipe.resultItem.icon;
         this.recipe = recipe;
+        Item = recipe.resultItem;
+        
     }
 
     public void OpenRecipePanel(Recipe recipe)
     {
          UIManager.instance.Crafting_UI.OpenRecipePanel(recipe);
+        ToolTipManager.instance.HideToolTip();
+        highlight.SetActive(true);
     }
-
+    public void DeactivateHighlight() { highlight.SetActive(false); }
 }
