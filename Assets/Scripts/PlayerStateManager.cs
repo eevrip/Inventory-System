@@ -6,6 +6,9 @@ public class PlayerStateManager : MonoBehaviour
 {
     #region Singleton
     public static PlayerStateManager instance;
+
+    public delegate void OnConsumeItem(bool animTriggered);
+    public OnConsumeItem consumeItem;
     void Awake()
     {
         instance = this;
@@ -20,29 +23,42 @@ public class PlayerStateManager : MonoBehaviour
     public Stats defence;
     ToolManager toolManager;
     EquipmentManager equipmentManager;
+    [SerializeField] private float timeCountdown;
+
+
+    public bool healthZero;
+    public bool waterZero;
+    public bool foodZero;
     // Stats defense;
     void Start()
     {
+        
+        health.ResetValue();
+        water.ResetValue();
+        food.ResetValue();
+        defence.ResetValue();
+        damage.ResetValue();
+       
         toolManager = ToolManager.instance;
         toolManager.onToolUpdateCallback += onToolUpdate;
         equipmentManager = EquipmentManager.instance;
         equipmentManager.onEquipmentUpdateCallback += onEquipmentUpdate;
+        Debug.Log("manager health = " + health.GetCurrentValue() + "base " + health.GetValue() );
+        StartCoroutine(ReduceFullnessOverTime(water));
+        StartCoroutine(ReduceFullnessOverTime(food));
     }
 
-    public void onToolUpdate(ToolObject item)
+    public void onToolUpdate(ToolObject item, bool addingState)
     {
-        // damage.SetValue(item.damage); //replace the damage caused
-        // defense = item.defense
+        
         damage.AddValue(toolManager.currToolStats[0]);
-       // defence.SetValue(toolManager.currToolStats[0]);
+        Debug.Log(item.title + " " + damage.GetValue());
 
 
     }
     public void onEquipmentUpdate(EquipmentObject item)
     {
-        // damage.SetValue(item.damage); //replace the damage caused
-        // defense = item.defense
-       // damage.SetValue(toolManager.currToolStats[0]);
+        
         defence.AddValue(equipmentManager.currEquipStats[0]);
 
 
@@ -50,20 +66,81 @@ public class PlayerStateManager : MonoBehaviour
     public void onConsumableUpdate(ConsumableObject newConsumable)
     {
         currHealth = currHealth + newConsumable.health;
-        health.AddValue(newConsumable.health);
-        water.AddValue(newConsumable.water);
-        food.AddValue(newConsumable.food);
-    }
+       healthZero = IsAddOnZero((float)newConsumable.health);
+         foodZero = IsAddOnZero((float)newConsumable.food);
+         waterZero = IsAddOnZero((float)newConsumable.water);
 
-    public void TakeDamage(int damageAmount)
+        health.UpdateCurrentValue((float)newConsumable.health);
+        water.UpdateCurrentValue((float)newConsumable.water);
+        food.UpdateCurrentValue((float)newConsumable.food);
+        if(consumeItem !=null)
+            consumeItem.Invoke(true);
+    }
+    public bool IsAddOnZero(float addOn)
+    {
+        if(addOn !=0 )
+            return false;
+        return true;
+    }
+    public void TakeDamage(float damageAmount)
     {
         if (health.GetCurrentValue() > 0)
         {
-            health.RemoveValue(damageAmount);
+            health.UpdateCurrentValue(-damageAmount);
         }
         else
         {
             //Die();
         }
     }
+
+  /*  private void Update()
+    {
+       
+        currentTimeCountdown -= Time.deltaTime;
+
+        if (currentTimeCountdown < 0f)
+        {
+           
+            water.RemoveValue(3);
+            food.RemoveValue(1);
+            currentTimeCountdown = timeCountdown;
+            if (consumeItem != null)
+                consumeItem.Invoke();
+        }
+    }*/
+    private void OnCloseToDying(Stats stat)
+    {
+        
+        string msg = stat.GetName() + " imminent";
+        PopUpMessagesManager.instance.ShowPopUpMessage(msg);
+        StartCoroutine(ReduceFullnessOverTime(health));
+    }
+    private IEnumerator ReduceFullnessOverTime(Stats stat)
+    {
+        float maxValue = stat.GetMaxValue();
+        float rate = stat.GetReducingRate();
+        // This will keep reducing fullness until it reaches 0
+        while (stat.GetCurrentValue() > 30f)
+        {
+           
+            stat.UpdateCurrentValue(-rate * Time.deltaTime);      // Ensure it doesn't go below 0
+            if (consumeItem != null)
+                consumeItem.Invoke(false);
+            yield return null;  // Wait for the next frame before continuing
+        }
+        if (stat.GetName() != "health")
+            OnCloseToDying(stat);
+        while (stat.GetCurrentValue() > 0f)
+        {
+
+            stat.UpdateCurrentValue(-rate * Time.deltaTime);// * Time.deltaTime);      // Ensure it doesn't go below 0
+            if (consumeItem != null)
+                consumeItem.Invoke(false);
+            yield return null;  // Wait for the next frame before continuing
+        }
+        // Trigger hunger state or any other consequence
+
+    }
+
 }

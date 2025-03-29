@@ -99,7 +99,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Padding:
     m_Left: 10
     m_Right: 10
-    m_Top: 2
-    m_Bottom: 2
+    m_Top: 7
+    m_Bottom: 7
   m_ChildAlignment: 5
   m_Spacing: 0
   m_ChildForceExpandWidth: 0

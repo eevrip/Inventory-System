@@ -26,6 +26,11 @@ public class ToolTipManager : MonoBehaviour
     public TextMeshProUGUI health;
     public TextMeshProUGUI damage;
     public TextMeshProUGUI defence;
+    public GameObject use;
+    public GameObject drop;
+    public GameObject switchContainer;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -171,5 +176,22 @@ public class ToolTipManager : MonoBehaviour
         this.water.gameObject.SetActive(active);
         this.health.gameObject.SetActive(active);
     }
-
+    public void ActivateButtonsInventory()
+    {
+        use.SetActive(true);
+        drop.SetActive(true);
+        switchContainer.SetActive(false);
+    }
+    public void ActivateButtonsStorage()
+    {
+        use.SetActive(false);
+        drop.SetActive(false);
+        switchContainer.SetActive(true);
+    }
+    public void DeactivateButtonsInfo()
+    {
+        use.SetActive(false);
+        drop.SetActive(false);
+        switchContainer.SetActive(false);
+    }
 }

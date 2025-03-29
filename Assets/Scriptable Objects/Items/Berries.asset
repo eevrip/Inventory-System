@@ -17,7 +17,7 @@ MonoBehaviour:
   title: Berries
   description: Sweet and tasty treats
   icon: {fileID: 21300000, guid: 63406dc92f29dc84a8d87cce11c53428, type: 3}
-  ID: 9
+  ID: 2
   canBeCrafted: 0
   food: 1
   water: 1

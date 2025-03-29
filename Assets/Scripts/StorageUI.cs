@@ -39,6 +39,7 @@ public class StorageUI : InventoryUI
     public override void ShowInventory()
     {
         UIManager.instance.MouseMovementEnabled();
+        
         backpackUI.InventoryMode(false);
         backpackUI.ShowInventory(); //need to call backpack inventory from here  
         base.ShowInventory();

@@ -16,6 +16,6 @@ MonoBehaviour:
   type: 0
   title: Coal
   description: It is staining everything. Can be used for heat source.
-  icon: {fileID: 0}
-  ID: 13
+  icon: {fileID: 21300000, guid: 9ba14469b53081c4c8f6c94166ac2ac4, type: 3}
+  ID: 4
   canBeCrafted: 0

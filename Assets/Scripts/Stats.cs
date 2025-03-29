@@ -6,20 +6,33 @@ using UnityEngine;
 public class Stats
 {
     [SerializeField]
-    private int baseValue;
-    private int currentValue;
-    private int addOnValue;
+    private string statName;
+    [SerializeField]
+    private float baseValue;
+    [SerializeField]
+    private float reducingRate;
+    [SerializeField] private float maxValue = 100f;
+    private float currentValue;
+    private float addOnValue;
 
     public Stats()
     {
         ResetValue();
     }
-    public int GetValue()
+    public float GetMaxValue() { return maxValue; }
+    public float GetReducingRate() { return reducingRate; }
+    public string GetName() { return statName; }
+    public float GetValue()
     {
-       //currentValue = baseValue + addOnValue;
-        return baseValue + addOnValue;
+      float val = baseValue + addOnValue;
+        if (val < maxValue)
+        {
+            return val;
+        }
+        return maxValue;
     }
-    public void AddValue(int addOn)
+    
+    public void AddValue(float addOn)
     {
         addOnValue = addOn;
        // currentValue += addOnValue;
@@ -27,18 +40,28 @@ public class Stats
     }
     
     
-    public void RemoveValue(int removeVal) {
-    
-        addOnValue = -removeVal;
-    }
-    public int GetCurrentValue()
+   
+    public float GetCurrentValue()
     { 
-        currentValue = currentValue + addOnValue;
-        return currentValue;
+        
+       
+       return currentValue;
 
+    }
+    public float UpdateCurrentValue(float addOn)
+    {
+        addOnValue = addOn;
+        currentValue = currentValue + addOnValue;
+        if (currentValue < maxValue && currentValue > 0f)
+        {
+            return currentValue;
+        }
+        else if (currentValue < 0f)
+            return 0f;
+        return maxValue;
     }
     public void ResetValue() {
         currentValue = baseValue;
-        addOnValue = 0;
+        addOnValue = 0f;
     }
 }

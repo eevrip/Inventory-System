@@ -21,6 +21,7 @@ public class BackpackUI : InventoryUI
         base.Start();
         CurrentInventory = PlayerInventory.instance;
          CurrentInventory.onItemUpdateCallback += UpdateUI;
+
         playerMvm = player.GetComponent<PlayerMovement>();
         cam = Camera.main; //Camera
         mouseCursor = cam.GetComponent<MouseLook>(); //MouseLook script of the camera

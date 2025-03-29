@@ -30,8 +30,10 @@ public class CraftingUI : MonoBehaviour
     
     public void OpenCraftingMenu()
     {
-        isUIShown = true;
+        isUIShown = true; 
+        DeactivateAllHighlights();
         UIManager.instance.MouseMovementEnabled();
+        ToolTipManager.instance.DeactivateButtonsInfo();
         craftingMenuPanel.SetActive(true);
       
     }

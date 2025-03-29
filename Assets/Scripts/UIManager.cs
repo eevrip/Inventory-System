@@ -32,7 +32,10 @@ public class UIManager : MonoBehaviour
 
     private bool isCraftingTableOpen = false;
 
-
+    public delegate void onOpenInventory();
+    public delegate void onCloseInventory();
+    public onOpenInventory onOpenInventoryCall;
+    public onCloseInventory onCloseInventoryCall;
     public void Start()
     {
 
@@ -60,14 +63,18 @@ public class UIManager : MonoBehaviour
                 {
                     isUIEnabled = true;
                     MouseMovementEnabled();
+                    ToolTipManager.instance.ActivateButtonsInventory();
                     backpackUI.ShowInventory();
-                    
+                    if(onOpenInventoryCall!=null)
+                        onOpenInventoryCall.Invoke();
                 }
                 else
                 {   isUIEnabled = false;
                     MouseMovementDisabled();
                     backpackUI.CloseInventory();
                     ToolTipManager.instance.HideToolTip();
+                    if (onOpenInventoryCall != null)
+                        onCloseInventoryCall.Invoke();
                 }
             }
         }

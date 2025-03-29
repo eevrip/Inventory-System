@@ -16,8 +16,8 @@ MonoBehaviour:
   type: 1
   title: Grilled Mushrooms
   description: Smells barbequey. Yum!
-  icon: {fileID: 0}
-  ID: 17
+  icon: {fileID: 21300000, guid: 1b959e8cd959a9e42b10e3aed508245f, type: 3}
+  ID: 8
   canBeCrafted: 0
   food: 10
   water: 0

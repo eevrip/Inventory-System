@@ -16,6 +16,6 @@ MonoBehaviour:
   type: 4
   title: Small storage
   description: Locker to storage items
-  icon: {fileID: 21300000, guid: 2693c3fd96c262348a0d8b347eee22d6, type: 3}
-  ID: 7
+  icon: {fileID: 21300000, guid: f5ed99f2d9e69a34895daf4edde5af2f, type: 3}
+  ID: 18
   canBeCrafted: 0

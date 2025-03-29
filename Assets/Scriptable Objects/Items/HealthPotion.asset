@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8862650e733ae3e4ea49da0a5987dfab, type: 3}
+  m_Name: HealthPotion
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6997363359297958621, guid: 790c1518f44fd844e95af06e30ba2a4e, type: 3}
+  type: 1
+  title: Health Potion
+  description: Heals your wounds.
+  icon: {fileID: 21300000, guid: 7068a0ced9a60d04199e39a122f2c14b, type: 3}
+  ID: 22
+  canBeCrafted: 0
+  food: 0
+  water: 0
+  health: 50

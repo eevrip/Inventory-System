@@ -56,8 +56,11 @@ public class BackpackSlot : InventorySlot //, IPointerEnterHandler, IPointerExit
     {
         if (Item)
         {
-            Item.Use();
-            PlayerInventory.instance.Remove(StaticIndex);
+            if (Item.type == ItemType.Consumable)
+            {
+                Item.Use();
+                PlayerInventory.instance.Remove(StaticIndex);
+            }
         }
         
     }
@@ -76,11 +79,13 @@ public class BackpackSlot : InventorySlot //, IPointerEnterHandler, IPointerExit
         {
             inventoryButton.SetActive(true);
             switchContainerButton.SetActive(false);
+            ToolTipManager.instance.ActivateButtonsInventory();
         }
         else
         {
             inventoryButton.SetActive(false);
             switchContainerButton.SetActive(true);
+            ToolTipManager.instance.ActivateButtonsStorage();
         }
     }
 
@@ -94,6 +99,7 @@ public class BackpackSlot : InventorySlot //, IPointerEnterHandler, IPointerExit
         {
             Debug.Log(Item.prefab.name + "" + StaticIndex + "assign" + index);
             PlayerInventory.instance.AssignItemToolBarFromInventory(Item, index, StaticIndex);
+            base.AssignItemToolBar(index);
         }
 
     }

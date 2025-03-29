@@ -18,49 +18,62 @@ public class ToolManager : MonoBehaviour
     ToolObject[] currTool; //current equipment
 
     PlayerInventory inventory;
-    public delegate void toolUpdate(ToolObject item);
+    public delegate void toolUpdate(ToolObject item, bool state);
     public toolUpdate onToolUpdateCallback;
     public int[] currToolStats = new int[2];
     [SerializeField] private GameObject toolGO;
+  
 
     void Start()
     {
         inventory = PlayerInventory.instance;
         int numSlots = System.Enum.GetNames(typeof(ToolKind)).Length;
         currTool = new ToolObject[numSlots]; //create array with the same dimensions as the number of the kinds of equipment
+        onToolUpdateCallback += SpawnTool;
         
     }
 
     public void AddStats(ToolObject obj)
     {
-        toolGO.SetActive(true);
+     
+
         currToolStats[0] = obj.damage;
         //currToolStats[1] = obj.defence;
+
         if (onToolUpdateCallback != null)
-            onToolUpdateCallback.Invoke(obj);
+        {
+            onToolUpdateCallback.Invoke(obj, true); //Calls from PlayerStateManager
+
+        }
+
     }
 
     public void RemoveStats(ToolObject obj)
     {
-        toolGO.SetActive(false);
+     
         currToolStats[0] = 0;
         // currToolStats[1] = 0;
         if (onToolUpdateCallback != null)
-            onToolUpdateCallback.Invoke(obj);
+            onToolUpdateCallback.Invoke(obj, false);
     }
 
-    /*public void SpawnTool(bool spawningState, ToolObject obj)
+    public void SpawnTool(ToolObject obj, bool addingState)
     {
-        if(spawningState)
-        {
-            
-            GameObject temp;
-            temp = Instantiate(obj.prefab, toolPos.position, Quaternion.identity, toolPos);  //
-            temp.GetComponent<Rigidbody>().isKinematic = true;
-        }
+        if (addingState) {
+            if (toolGO.transform.childCount>0)
+            {
+                Destroy(toolGO.transform.GetChild(0).gameObject);
+            }
+        GameObject temp;
+        temp = Instantiate(obj.prefab, toolGO.transform);
+        temp.GetComponent<Rigidbody>().isKinematic = true;
+}
         else
         {
-            Destroy(toolPos.GetChild(0).gameObject);
+            Destroy(toolGO.transform.GetChild(0).gameObject);
         }
-    }*/
+
+    }
+   
 }
+

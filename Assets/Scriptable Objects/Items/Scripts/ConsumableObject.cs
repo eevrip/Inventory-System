@@ -16,6 +16,7 @@ public class ConsumableObject : ItemObject
         base.Use();
         //Consume item
         //Add food, water and health to current state
+        PopUpMessagesManager.instance.ShowPopUpMessage("- " + title);
         PlayerStateManager.instance.onConsumableUpdate(this);
         //Remove from inventory
         //RemoveFromInventory();

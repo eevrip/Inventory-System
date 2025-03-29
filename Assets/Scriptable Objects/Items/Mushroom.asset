@@ -19,7 +19,7 @@ MonoBehaviour:
 
 '
   icon: {fileID: 21300000, guid: eada3310f4f609a4ba0c0dd3cf66686b, type: 3}
-  ID: 3
+  ID: 10
   canBeCrafted: 0
   food: 1
   water: 0

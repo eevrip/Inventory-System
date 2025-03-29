@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   prefab: {fileID: 1746292695214665779, guid: 48033ce1e8c9b0946b571e094c2e3687, type: 3}
-  type: 3
+  type: 2
   title: Knife
   description: Cutting tool
   icon: {fileID: 21300000, guid: 2f6927705cff51b44b7ece87f3e3b63f, type: 3}
-  ID: 2
+  ID: 9
+  canBeCrafted: 0
   damage: 2
   toolKind: 2

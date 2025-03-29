@@ -70,8 +70,9 @@ public class ToolBarSlot : InventorySlot//, IPointerEnterHandler, IPointerExitHa
     {
         if (Item != null)
         {
+           
             if (Item.type == ItemType.Tool)
-            {
+            {// ToolManager.instance.SpawnTool(true, Item);
                 Debug.Log("Equip");
                 Item.EquipItem();
                 anim.SetLeftHandPickingUp();
@@ -83,8 +84,9 @@ public class ToolBarSlot : InventorySlot//, IPointerEnterHandler, IPointerExitHa
     {
         if (Item != null)
         {
+           
             if (Item.type == ItemType.Tool)
-            {
+            { //ToolManager.instance.SpawnTool(false, Item);
                 Debug.Log("Unequip");
                 Item.UnequipItem();
                 anim.SetRightHandPickingUp();
@@ -119,7 +121,7 @@ public class ToolBarSlot : InventorySlot//, IPointerEnterHandler, IPointerExitHa
         if(index != StaticIndex)
         {
             PlayerInventory.instance.AssignItemToolBarFromBar(Item, index, StaticIndex);
-            
+            base.AssignItemToolBar(index);
         }
  
     }

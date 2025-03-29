@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3815551760877377874}
   - component: {fileID: 68487020966985627}
   - component: {fileID: 300959945564752999}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: berry juice (4)
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

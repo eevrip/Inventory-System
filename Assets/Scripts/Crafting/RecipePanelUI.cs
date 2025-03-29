@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class RecipePanelUI : MonoBehaviour
 {
     
     public TextMeshProUGUI recipeTitle;
+    [SerializeField] private GameObject naEffectCraftButton;
     [SerializeField] private TextMeshProUGUI description;
     public List<ResourceSlotUI> resourcePool = new List<ResourceSlotUI>();
     private Recipe currentRecipe;
@@ -24,7 +26,9 @@ public class RecipePanelUI : MonoBehaviour
         currentRecipe = recipe;
         recipeTitle.text = recipe.recipeName;
         description.text = recipe.resultItem.description;
+        
         ShowResources(recipe);
+        CanCraft();
     }
 
     public void ShowResources(Recipe recipe)
@@ -48,19 +52,38 @@ public class RecipePanelUI : MonoBehaviour
     }
     public void Craft()
     {
-        bool canCraft = false;
+      
         if (currentRecipe != null) {
-            canCraft = currentRecipe.Craft(PlayerInventory.instance);
+            bool canCraft = currentRecipe.Craft(PlayerInventory.instance);
             if (!canCraft)
             {
-                Debug.Log("Dont have enough ingredients");
+               
+                PopUpMessagesManager.instance.ShowPopUpMessage("Don't have enough ingredients") ;
             }
+            
         }
             
         for (int i = 0; i < currentRecipe.Ingredients.Count; i++)
         {
             resourcePool[i].UpdateDetails(currentRecipe.Ingredients[i]);
            
+        }
+        CanCraft();
+    }
+    public void CanCraft()
+    {
+        
+        if (currentRecipe != null)
+        {
+            
+            if (!currentRecipe.CanCraft(PlayerInventory.instance))
+            {
+                naEffectCraftButton.gameObject.SetActive(true);
+                
+                //PopUpMessagesManager.instance.ShowPopUpMessage("Don't have enough ingredients");
+            }
+            else
+                naEffectCraftButton.gameObject.SetActive(false);
         }
     }
 }

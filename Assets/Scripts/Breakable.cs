@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour, IInteractable
 {
-   [SerializeField] private int health;
+   [SerializeField] private float health;
     //GameObject breakableItem = transform.gameObject;
 
     private bool isBroken = false;
@@ -26,12 +26,12 @@ public class Breakable : MonoBehaviour, IInteractable
        
     }
 
-    void BreakItem(int damage)
+    void BreakItem(float damage)
     {
         
 
         health = health - damage; //Damage of equipment
-        Debug.Log("Remaining strength " + health);
+        Debug.Log("Remaining strength " + health + "dam " + damage);
 
 
         if (health <= 0f)

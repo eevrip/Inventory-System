@@ -23,8 +23,8 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         set { isOnSlot = value; }
     }
 
-
-    
+    public delegate void OnSelectItem(ItemObject obj);
+    public OnSelectItem callOnSelectItem;
 
     public virtual void Start()
     {
@@ -141,8 +141,8 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
      public virtual void AssignItemToolBar(int index)
      {
-
-
+        if(callOnSelectItem != null)
+            callOnSelectItem.Invoke(item);
      }
 
 

@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 8295170390579296402}
   - component: {fileID: 7607332168258981191}
   m_Layer: 8
-  m_Name: coal
+  m_Name: coalMesh
   m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
