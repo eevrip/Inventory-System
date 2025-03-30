@@ -62,25 +62,32 @@ public class StatsUI : MonoBehaviour
         switch(type)
         {
             case StatsType.Health:
-                currValue.value = stateManager.health.GetCurrentValue();
+                currValue.value = stateManager.health.GetCurrentVisualValue();
                 isZero = stateManager.healthZero;
                 break;
             case StatsType.Water:
-                currValue.value = stateManager.water.GetCurrentValue();
+                currValue.value = stateManager.water.GetCurrentVisualValue();
                 isZero = stateManager.waterZero;
                 break;
             case StatsType.Food:
-                currValue.value = stateManager.food.GetCurrentValue();
+                currValue.value = stateManager.food.GetCurrentVisualValue();
                 isZero = stateManager.foodZero;
                 break;
             default:
                 break;
 
         }
-        if(animTriggered && !isZero)
+        int intVal = Mathf.CeilToInt(currValue.value);
+        if (previousVal != intVal)
         {
-            StartCoroutine(AnimationToTrigger());
+            Debug.Log(gameObject.name + " " + intVal);
+            text.text = intVal.ToString() + "/" + maxVal;
+            previousVal = intVal;
         }
+       // if (animTriggered && !isZero)
+       // {
+       //     StartCoroutine(AnimationToTrigger());
+       // }
        
         
     }

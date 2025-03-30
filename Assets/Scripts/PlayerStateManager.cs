@@ -70,9 +70,13 @@ public class PlayerStateManager : MonoBehaviour
          foodZero = IsAddOnZero((float)newConsumable.food);
          waterZero = IsAddOnZero((float)newConsumable.water);
 
-        health.UpdateCurrentValue((float)newConsumable.health);
-        water.UpdateCurrentValue((float)newConsumable.water);
-        food.UpdateCurrentValue((float)newConsumable.food);
+        //health.UpdateCurrentValue((float)newConsumable.health);
+     //   health.AddOn();
+        StartCoroutine(IncreaseFullnessOverTime(health,(float)newConsumable.health));
+        StartCoroutine(IncreaseFullnessOverTime(water, (float)newConsumable.water));
+        // water.UpdateCurrentValue((float)newConsumable.water);
+        StartCoroutine(IncreaseFullnessOverTime(food, (float)newConsumable.food));
+       // food.UpdateCurrentValue((float)newConsumable.food);
         if(consumeItem !=null)
             consumeItem.Invoke(true);
     }
@@ -86,7 +90,8 @@ public class PlayerStateManager : MonoBehaviour
     {
         if (health.GetCurrentValue() > 0)
         {
-            health.UpdateCurrentValue(-damageAmount);
+            //health.UpdateCurrentValue(-damageAmount);
+            StartCoroutine(ReduceFullness(health, damageAmount));
         }
         else
         {
@@ -125,6 +130,7 @@ public class PlayerStateManager : MonoBehaviour
         {
            
             stat.UpdateCurrentValue(-rate * Time.deltaTime);      // Ensure it doesn't go below 0
+            stat.SetCurrentVisualValue(stat.GetCurrentValue());
             if (consumeItem != null)
                 consumeItem.Invoke(false);
             yield return null;  // Wait for the next frame before continuing
@@ -135,6 +141,7 @@ public class PlayerStateManager : MonoBehaviour
         {
 
             stat.UpdateCurrentValue(-rate * Time.deltaTime);// * Time.deltaTime);      // Ensure it doesn't go below 0
+            stat.SetCurrentVisualValue(stat.GetCurrentValue());
             if (consumeItem != null)
                 consumeItem.Invoke(false);
             yield return null;  // Wait for the next frame before continuing
@@ -142,5 +149,48 @@ public class PlayerStateManager : MonoBehaviour
         // Trigger hunger state or any other consequence
 
     }
+    private IEnumerator IncreaseFullnessOverTime(Stats stat, float addOn)
+    {
+        float currentVal = stat.GetCurrentValue();
+        
+        float targetVal = currentVal + addOn;
+        stat.UpdateCurrentValue(addOn);
+        float rate = 3f;
+        float step = 0f;
+        // This will keep reducing fullness until it reaches 0
+        while (stat.GetCurrentVisualValue() < targetVal)
+        {
+            
+            
+            stat.SetCurrentVisualValue(Mathf.Lerp(currentVal,targetVal, step));      
+            step += rate * Time.deltaTime; 
+            if (consumeItem != null)
+                consumeItem.Invoke(false);
+            yield return null;  // Wait for the next frame before continuing
+        }
+        
+        // Trigger hunger state or any other consequence
 
+    }
+    private IEnumerator ReduceFullness(Stats stat, float addOn)
+    {
+        float currentVal = stat.GetCurrentValue();
+
+        float targetVal = currentVal - addOn;
+        stat.UpdateCurrentValue(-addOn);
+        float rate = 3f;
+        float step = 0f;
+        // This will keep reducing fullness until it reaches 0
+        while (stat.GetCurrentVisualValue() > targetVal)
+        {
+
+
+            stat.SetCurrentVisualValue(Mathf.Lerp(currentVal, targetVal, step));
+            step -= rate * Time.deltaTime;
+            if (consumeItem != null)
+                consumeItem.Invoke(false);
+            yield return null;  // Wait for the next frame before continuing
+        }
+
+    }
 }

@@ -13,6 +13,7 @@ public class Stats
     private float reducingRate;
     [SerializeField] private float maxValue = 100f;
     private float currentValue;
+    private float currentVisualValue;
     private float addOnValue;
 
     public Stats()
@@ -48,10 +49,35 @@ public class Stats
        return currentValue;
 
     }
+    public float GetCurrentVisualValue()
+    {
+
+
+        return currentVisualValue;
+
+    }
+    public void SetCurrentValue(float value)
+    {
+        if(value > maxValue)
+
+            currentValue = maxValue;
+        else if(value <0f)
+            currentValue = 0f;
+        currentValue = value;
+    }
+    public void SetCurrentVisualValue(float value)
+    {
+        if (value > maxValue)
+
+            currentVisualValue = maxValue;
+        else if (value < 0f)
+            currentVisualValue = 0f;
+        currentVisualValue = value;
+    }
     public float UpdateCurrentValue(float addOn)
     {
         addOnValue = addOn;
-        currentValue = currentValue + addOnValue;
+        currentValue = currentValue + addOn;
         if (currentValue < maxValue && currentValue > 0f)
         {
             return currentValue;
@@ -62,6 +88,7 @@ public class Stats
     }
     public void ResetValue() {
         currentValue = baseValue;
+        currentVisualValue = currentValue;
         addOnValue = 0f;
     }
 }
