@@ -45,9 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7ebf518ea682a4bb28ef25bf1f9706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 6
+  health: 15
+  nameItem: rock
   anim: {fileID: 0}
   item: {fileID: 11400000, guid: 197041a2edcff584a9e417d68698539a, type: 2}
+  amount: 2
+  message: Break
 --- !u!1 &4224828193669164327
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,8 +80,8 @@ Transform:
   m_GameObject: {fileID: 4224828193669164327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.338, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 633377201617589270}
   m_RootOrder: 0

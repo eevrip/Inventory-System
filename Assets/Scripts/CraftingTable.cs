@@ -7,6 +7,15 @@ public class CraftingTable : MonoBehaviour, IInteractable
     [SerializeField]
     private ItemObject item;
     public ItemObject Item { get { return item; } set { item = value; } }
+    [SerializeField] private string message;
+    public string Message
+    {
+        get { return message; }
+        set
+        {
+            message = value;
+        }
+    }
     private CraftingUI craftingUI;
     public void Interact()
     {
@@ -21,6 +30,7 @@ public class CraftingTable : MonoBehaviour, IInteractable
     void Start()
     {
         craftingUI = UIManager.instance.Crafting_UI;
+        message = "Open Crafting Table";
     }
 
     // Update is called once per frame

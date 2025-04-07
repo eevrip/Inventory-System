@@ -16,7 +16,7 @@ MonoBehaviour:
   type: 1
   title: Health Potion
   description: Heals your wounds.
-  icon: {fileID: 21300000, guid: 7068a0ced9a60d04199e39a122f2c14b, type: 3}
+  icon: {fileID: 21300000, guid: c791d67da4378874cb0caf4e78843e93, type: 3}
   ID: 22
   canBeCrafted: 0
   food: 0

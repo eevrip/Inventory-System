@@ -19,6 +19,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 5e2f082c6d2860040a3283711b45a5f4, type: 3}
   ID: 11
   canBeCrafted: 0
-  food: 7
-  water: 10
+  food: 25
+  water: 25
   health: 5

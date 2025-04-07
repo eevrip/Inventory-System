@@ -27,7 +27,7 @@ public class PopUpMessagesManager : MonoBehaviour
     }
     #endregion
     // Start is called before the first frame update
-    public void ShowMessage(string messageText)//, int isAdded)
+    public void ShowMessage(string messageText)
     {
         PopUpMessage currPopUp = null;
         currentMessage = null;
@@ -37,7 +37,7 @@ public class PopUpMessagesManager : MonoBehaviour
         {
             messageCounts[messageText]++;
             currPopUp = messages.Find(x => x.msgText == messageText);
-            messageText = $"{messageText} {messageCounts[messageText]}"; // Update the message with the count
+            messageText = $"{messageText} (x{messageCounts[messageText]})"; // Update the message with the count
 
 
             currentMessage = currPopUp.msgGO;

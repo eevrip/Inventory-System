@@ -81,7 +81,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             //delayToolTip = StartCoroutine(delayShow());
 
         }
-        Debug.Log("in " + StaticIndex);
+       // Debug.Log("in " + StaticIndex);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -92,7 +92,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
        //     StopCoroutine(delayToolTip);
       //  }
         ToolTipManager.instance.HideToolTip();
-        Debug.Log("out " + StaticIndex);
+       // Debug.Log("out " + StaticIndex);
     }
 
    

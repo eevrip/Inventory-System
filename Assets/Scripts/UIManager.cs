@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -16,13 +17,16 @@ public class UIManager : MonoBehaviour
     private PlayerMovement playerMvm;
     private Camera cam;
     private MouseLook mouseCursor;
+    [SerializeField] private GameObject centerCursor;
+    [SerializeField] private GameObject informationalText;
     [SerializeField] private BackpackUI backpackUI;
     [SerializeField] private StorageUI storageUI;
     [SerializeField] private CraftingUI craftingUI;
+    [SerializeField] private ToolBarUI toolbarUI;
     public BackpackUI Backpack_UI => backpackUI;
       public StorageUI Storage_UI => storageUI;
     public CraftingUI Crafting_UI => craftingUI;
-
+    public ToolBarUI Toolbar_UI => toolbarUI;
     private bool isStorageOpen = false;
     public bool IsStorageOpen { get { return isStorageOpen; } }
     private bool wasStorageClosed = false; //was storage closed before
@@ -31,7 +35,9 @@ public class UIManager : MonoBehaviour
     public bool IsUIEnabled { get { return isUIEnabled; } }
 
     private bool isCraftingTableOpen = false;
+    public bool IsCraftingTableOpen { get { return isCraftingTableOpen; } }
 
+    private TextMeshProUGUI infoText;
     public delegate void onOpenInventory();
     public delegate void onCloseInventory();
     public onOpenInventory onOpenInventoryCall;
@@ -44,7 +50,7 @@ public class UIManager : MonoBehaviour
         playerMvm = player.GetComponent<PlayerMovement>();
         cam = Camera.main; //Camera
         mouseCursor = cam.GetComponent<MouseLook>(); //MouseLook script of the camera
-
+       infoText = informationalText.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
     void Update()
     {
@@ -117,10 +123,22 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void SetInformationalText(string text)
+    {
+        infoText.text = text;
+        informationalText.SetActive(true);
+    }
+    public void HideInformationalText()
+    {
+        infoText.text = string.Empty;
+        informationalText.SetActive(false);
+    }
 
     public void MouseMovementEnabled()
     {
-       
+        toolbarUI.DeactivateControlInfo();
+        centerCursor.SetActive(false);
+        HideInformationalText();
         playerMvm.ResetHorizontalSpeed();
         playerMvm.enabled = false;
         ShowCursor.instance.CursorEnabled();
@@ -129,8 +147,9 @@ public class UIManager : MonoBehaviour
     }
     public void MouseMovementDisabled()
     {
-        
-
+        toolbarUI.ActivateControlInfo();
+        centerCursor.SetActive(true);
+        HideInformationalText();
         playerMvm.enabled = true;
         ShowCursor.instance.CursorDisabled();
         Cursor.lockState = CursorLockMode.Locked; //Mouse Cursor is locked to the center of the screen

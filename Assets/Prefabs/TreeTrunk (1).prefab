@@ -45,10 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7ebf518ea682a4bb28ef25bf1f9706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
-  item: {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
   health: 2
-  isBroken: 0
+  nameItem: tree trunk
+  anim: {fileID: 0}
+  item: {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
+  amount: 1
+  message: Chop
 --- !u!1001 &1062597391980720643
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -70,18 +70,31 @@ public class ToolBarSlot : InventorySlot//, IPointerEnterHandler, IPointerExitHa
     {
         if (Item != null)
         {
-           
+
             if (Item.type == ItemType.Tool)
             {// ToolManager.instance.SpawnTool(true, Item);
+
+                toolbarUI.SetControlInfo(0);
+                toolbarUI.SetControlInfo(1);
+
                 Debug.Log("Equip");
                 Item.EquipItem();
                 anim.SetLeftHandPickingUp();
-                
+
             }
+            else if (Item.type == ItemType.Consumable)
+            {
+                toolbarUI.SetControlInfo(0);
+                toolbarUI.SetControlInfo(1);
+            }
+            else
+            { toolbarUI.SetControlInfo(1); toolbarUI.DeactivateControl(0); }
         }
     }
     public void UnequipSlot()
     {
+        toolbarUI.DeactivateControl(0);
+        toolbarUI.DeactivateControl(1);
         if (Item != null)
         {
            
@@ -98,8 +111,9 @@ public class ToolBarSlot : InventorySlot//, IPointerEnterHandler, IPointerExitHa
     public void DropItem()
     {
       //Remove and spawn item given a specific position at toolbar
+      Item.Remove();
         PlayerInventory.instance.RemoveSpawnToolBar(StaticIndex);
-        Item.Remove();
+        
 
 
     }

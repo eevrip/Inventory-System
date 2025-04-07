@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class StatsUI : MonoBehaviour
 {
     [SerializeField] private Slider currValue;
-    
+
     [SerializeField] private StatsType type;
     [SerializeField] private TextMeshProUGUI text;
     private PlayerStateManager stateManager;
     private UIManager uiManager;
     private float maxVal;
-    private int previousVal =0;
+    private int previousVal = 0;
     private Animator anim;
     void Start()
     {
@@ -21,10 +21,11 @@ public class StatsUI : MonoBehaviour
         uiManager = UIManager.instance;
         anim = GetComponent<Animator>();
         stateManager.consumeItem += SetSliderValue;
+
         uiManager.onOpenInventoryCall += ShowText;
         uiManager.onCloseInventoryCall += HideText;
         SetSliderMaxValue();
-        SetSliderValue(false);
+        SetSliderValue();
     }
 
     public void ShowText()
@@ -53,25 +54,25 @@ public class StatsUI : MonoBehaviour
                 break;
 
         }
-       maxVal= currValue.maxValue;
+        maxVal = currValue.maxValue;
     }
-    
-    public void SetSliderValue(bool animTriggered)
+
+    public void SetSliderValue()
     {
-        bool isZero = true;
-        switch(type)
+
+        switch (type)
         {
             case StatsType.Health:
                 currValue.value = stateManager.health.GetCurrentVisualValue();
-                isZero = stateManager.healthZero;
+
                 break;
             case StatsType.Water:
                 currValue.value = stateManager.water.GetCurrentVisualValue();
-                isZero = stateManager.waterZero;
+
                 break;
             case StatsType.Food:
                 currValue.value = stateManager.food.GetCurrentVisualValue();
-                isZero = stateManager.foodZero;
+
                 break;
             default:
                 break;
@@ -80,31 +81,24 @@ public class StatsUI : MonoBehaviour
         int intVal = Mathf.CeilToInt(currValue.value);
         if (previousVal != intVal)
         {
-            Debug.Log(gameObject.name + " " + intVal);
-            text.text = intVal.ToString() + "/" + maxVal;
-            previousVal = intVal;
-        }
-       // if (animTriggered && !isZero)
-       // {
-       //     StartCoroutine(AnimationToTrigger());
-       // }
-       
-        
-    }
-    private IEnumerator AnimationToTrigger()
-    { 
-        anim.SetTrigger("onConsume");
 
-        yield return new WaitForSeconds(1f);
-        
-        int intVal= Mathf.CeilToInt(currValue.value);
-        if (previousVal != intVal)
-        {
-            Debug.Log(gameObject.name + " " + intVal);
             text.text = intVal.ToString() + "/" + maxVal;
             previousVal = intVal;
         }
+        if (intVal <= 30f)
+        {
+            anim.ResetTrigger("notDying");
+            anim.SetTrigger("onDying");
+        }
+        else
+        {
+            anim.ResetTrigger("onDying");
+            anim.SetTrigger("notDying");
+        }
+
     }
+
+
     public enum StatsType
     {
         Health,

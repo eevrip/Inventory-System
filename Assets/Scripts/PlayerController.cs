@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!uiManager.IsUIEnabled)
             Interacting();
-       
+        
+
     }
 
     void Interacting()
@@ -38,17 +39,25 @@ public class PlayerController : MonoBehaviour
         { //If the ray hits something, in range distanceCheck
             interactableItem = hit.collider.transform.parent.gameObject.GetComponent<IInteractable>();
 
-           
+
+
             if (interactableItem != null)
             {
-
+                uiManager.SetInformationalText(interactableItem.Message);
                 if (Input.GetMouseButtonDown(0))
                 { //Can interact with it
                     interactableItem.Interact();
                 }
             }
+            else
+            {
+                uiManager.HideInformationalText();
+            }
 
 
+        }
+        else {
+            uiManager.HideInformationalText();
         }
 
 

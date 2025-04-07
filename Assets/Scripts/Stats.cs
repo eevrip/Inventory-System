@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 public class Stats
 {
     [SerializeField]
-    private string statName;
+    public string statName;
     [SerializeField]
     private float baseValue;
     [SerializeField]
@@ -15,7 +16,36 @@ public class Stats
     private float currentValue;
     private float currentVisualValue;
     private float addOnValue;
-
+    private float targetValue;
+    public float TargetValue
+    {
+        get { return targetValue; } 
+        set
+        {
+            if (value > maxValue)
+            {
+                targetValue = maxValue;
+               
+            }
+            else if (value < 0f)
+                targetValue = 0f;
+            else
+                targetValue = value;
+        }
+    }
+         
+    private bool isUpdating = false;
+    public bool IsUpdating
+    {
+        get { return isUpdating; }
+        set { isUpdating = value; }
+    }
+    private Coroutine statUpdating;
+    public Coroutine StatUpdating
+    {
+        get { return statUpdating; }
+        set { statUpdating = value; }
+    }
     public Stats()
     {
         ResetValue();
@@ -25,28 +55,28 @@ public class Stats
     public string GetName() { return statName; }
     public float GetValue()
     {
-      float val = baseValue + addOnValue;
+        float val = baseValue + addOnValue;
         if (val < maxValue)
         {
             return val;
         }
         return maxValue;
     }
-    
+   
     public void AddValue(float addOn)
     {
         addOnValue = addOn;
-       // currentValue += addOnValue;
+        // currentValue += addOnValue;
 
     }
-    
-    
-   
+
+
+
     public float GetCurrentValue()
-    { 
-        
-       
-       return currentValue;
+    {
+
+
+        return currentValue;
 
     }
     public float GetCurrentVisualValue()
@@ -58,10 +88,10 @@ public class Stats
     }
     public void SetCurrentValue(float value)
     {
-        if(value > maxValue)
+        if (value > maxValue)
 
             currentValue = maxValue;
-        else if(value <0f)
+        else if (value < 0f)
             currentValue = 0f;
         currentValue = value;
     }
@@ -73,6 +103,18 @@ public class Stats
         else if (value < 0f)
             currentVisualValue = 0f;
         currentVisualValue = value;
+    }
+    public float UpdateCurrentVisualValue(float addOn)
+    {
+        addOnValue = addOn;
+        currentVisualValue = currentVisualValue + addOn;
+        if (currentVisualValue < maxValue && currentVisualValue > 0f)
+        {
+            return currentVisualValue;
+        }
+        else if (currentVisualValue < 0f)
+            return 0f;
+        return maxValue;
     }
     public float UpdateCurrentValue(float addOn)
     {
@@ -86,9 +128,11 @@ public class Stats
             return 0f;
         return maxValue;
     }
-    public void ResetValue() {
+    public void ResetValue()
+    {
         currentValue = baseValue;
         currentVisualValue = currentValue;
+        targetValue = currentValue;
         addOnValue = 0f;
     }
 }

@@ -26,6 +26,7 @@ public class ToolTipManager : MonoBehaviour
     public TextMeshProUGUI health;
     public TextMeshProUGUI damage;
     public TextMeshProUGUI defence;
+    public GameObject bind;
     public GameObject use;
     public GameObject drop;
     public GameObject switchContainer;
@@ -178,18 +179,21 @@ public class ToolTipManager : MonoBehaviour
     }
     public void ActivateButtonsInventory()
     {
+        bind.SetActive(true);
         use.SetActive(true);
         drop.SetActive(true);
         switchContainer.SetActive(false);
     }
     public void ActivateButtonsStorage()
     {
+        bind.SetActive(false);
         use.SetActive(false);
         drop.SetActive(false);
         switchContainer.SetActive(true);
     }
     public void DeactivateButtonsInfo()
     {
+        bind.SetActive(false);
         use.SetActive(false);
         drop.SetActive(false);
         switchContainer.SetActive(false);

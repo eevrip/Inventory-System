@@ -7,15 +7,14 @@ public class PlayerStateManager : MonoBehaviour
     #region Singleton
     public static PlayerStateManager instance;
 
-    public delegate void OnConsumeItem(bool animTriggered);
-    public OnConsumeItem consumeItem;
+
     void Awake()
     {
         instance = this;
     }
     #endregion
-    
-    int currHealth;
+
+
     public Stats health;
     public Stats water;
     public Stats food;
@@ -25,32 +24,34 @@ public class PlayerStateManager : MonoBehaviour
     EquipmentManager equipmentManager;
     [SerializeField] private float timeCountdown;
 
+    public delegate void OnConsumeItem();
+    public OnConsumeItem consumeItem;
 
-    public bool healthZero;
-    public bool waterZero;
-    public bool foodZero;
+
     // Stats defense;
     void Start()
     {
-        
+
         health.ResetValue();
         water.ResetValue();
         food.ResetValue();
         defence.ResetValue();
         damage.ResetValue();
-       
+
         toolManager = ToolManager.instance;
         toolManager.onToolUpdateCallback += onToolUpdate;
         equipmentManager = EquipmentManager.instance;
         equipmentManager.onEquipmentUpdateCallback += onEquipmentUpdate;
-        Debug.Log("manager health = " + health.GetCurrentValue() + "base " + health.GetValue() );
-        StartCoroutine(ReduceFullnessOverTime(water));
-        StartCoroutine(ReduceFullnessOverTime(food));
+        Debug.Log("manager health = " + health.GetCurrentValue() + "base " + health.GetValue());
+        water.StatUpdating = StartCoroutine(ReduceFullnessOverTime(water));
+
+        food.StatUpdating = StartCoroutine(ReduceFullnessOverTime(food));
+        health.StatUpdating = null;
     }
 
     public void onToolUpdate(ToolObject item, bool addingState)
     {
-        
+
         damage.AddValue(toolManager.currToolStats[0]);
         Debug.Log(item.title + " " + damage.GetValue());
 
@@ -58,40 +59,34 @@ public class PlayerStateManager : MonoBehaviour
     }
     public void onEquipmentUpdate(EquipmentObject item)
     {
-        
+
         defence.AddValue(equipmentManager.currEquipStats[0]);
 
 
     }
     public void onConsumableUpdate(ConsumableObject newConsumable)
     {
-        currHealth = currHealth + newConsumable.health;
-       healthZero = IsAddOnZero((float)newConsumable.health);
-         foodZero = IsAddOnZero((float)newConsumable.food);
-         waterZero = IsAddOnZero((float)newConsumable.water);
 
-        //health.UpdateCurrentValue((float)newConsumable.health);
-     //   health.AddOn();
-        StartCoroutine(IncreaseFullnessOverTime(health,(float)newConsumable.health));
-        StartCoroutine(IncreaseFullnessOverTime(water, (float)newConsumable.water));
-        // water.UpdateCurrentValue((float)newConsumable.water);
-        StartCoroutine(IncreaseFullnessOverTime(food, (float)newConsumable.food));
-       // food.UpdateCurrentValue((float)newConsumable.food);
-        if(consumeItem !=null)
-            consumeItem.Invoke(true);
-    }
-    public bool IsAddOnZero(float addOn)
-    {
-        if(addOn !=0 )
-            return false;
-        return true;
-    }
+
+        water.TargetValue = water.TargetValue + newConsumable.water;
+         food.TargetValue = food.TargetValue + newConsumable.food;
+         health.TargetValue = health.TargetValue + newConsumable.health;
+      
+        StartCoroutine(IncreaseFullnessOverTime(water, water.TargetValue, newConsumable.water));
+
+        StartCoroutine(IncreaseFullnessOverTime(food, food.TargetValue,newConsumable.food));
+        StartCoroutine(IncreaseFullnessOverTime(health, health.TargetValue, newConsumable.health));
+         
+
+    
+}
+
     public void TakeDamage(float damageAmount)
     {
-        if (health.GetCurrentValue() > 0)
+        if (health.GetCurrentVisualValue() > 0)
         {
-            //health.UpdateCurrentValue(-damageAmount);
-            StartCoroutine(ReduceFullness(health, damageAmount));
+            health.UpdateCurrentVisualValue(-damageAmount);
+            
         }
         else
         {
@@ -99,77 +94,119 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
-  /*  private void Update()
+    private void CriticalLevels(Stats stat)
     {
-       
-        currentTimeCountdown -= Time.deltaTime;
 
-        if (currentTimeCountdown < 0f)
-        {
-           
-            water.RemoveValue(3);
-            food.RemoveValue(1);
-            currentTimeCountdown = timeCountdown;
-            if (consumeItem != null)
-                consumeItem.Invoke();
-        }
-    }*/
-    private void OnCloseToDying(Stats stat)
-    {
-        
-        string msg = stat.GetName() + " imminent";
+        string msg = stat.GetName() + " levels critical.";
         PopUpMessagesManager.instance.ShowPopUpMessage(msg);
-        StartCoroutine(ReduceFullnessOverTime(health));
+        if(health.StatUpdating == null) { 
+        health.StatUpdating = StartCoroutine(ReduceFullnessOverTime(health));
+        }
+    }
+    private void LowLevels(Stats stat)
+    {
+        string msg = stat.GetName() + " imminent.";
+        PopUpMessagesManager.instance.ShowPopUpMessage(msg);
     }
     private IEnumerator ReduceFullnessOverTime(Stats stat)
     {
         float maxValue = stat.GetMaxValue();
         float rate = stat.GetReducingRate();
         // This will keep reducing fullness until it reaches 0
-        while (stat.GetCurrentValue() > 30f)
+      
+        while (stat.GetCurrentVisualValue() > 30f && !stat.IsUpdating)
         {
-           
-            stat.UpdateCurrentValue(-rate * Time.deltaTime);      // Ensure it doesn't go below 0
-            stat.SetCurrentVisualValue(stat.GetCurrentValue());
+            
+            stat.UpdateCurrentVisualValue(-rate * Time.deltaTime);
+         
+            stat.TargetValue = stat.GetCurrentVisualValue();
             if (consumeItem != null)
-                consumeItem.Invoke(false);
+                consumeItem.Invoke();
             yield return null;  // Wait for the next frame before continuing
         }
-        if (stat.GetName() != "health")
-            OnCloseToDying(stat);
-        while (stat.GetCurrentValue() > 0f)
+        if (stat!= health)
+            LowLevels(stat);
+        while (stat.GetCurrentVisualValue() > 15f && !stat.IsUpdating)
         {
 
-            stat.UpdateCurrentValue(-rate * Time.deltaTime);// * Time.deltaTime);      // Ensure it doesn't go below 0
-            stat.SetCurrentVisualValue(stat.GetCurrentValue());
+            stat.UpdateCurrentVisualValue(-rate * Time.deltaTime);
+         
+            stat.TargetValue = stat.GetCurrentVisualValue();
             if (consumeItem != null)
-                consumeItem.Invoke(false);
+                consumeItem.Invoke();
             yield return null;  // Wait for the next frame before continuing
         }
-        // Trigger hunger state or any other consequence
+        if (stat != health)
+          CriticalLevels(stat);
+        while (stat.GetCurrentVisualValue() > 0f && !stat.IsUpdating)
+        {
+
+            stat.UpdateCurrentVisualValue(-rate * Time.deltaTime);
+
+            stat.TargetValue = stat.GetCurrentVisualValue();
+            if (consumeItem != null)
+                consumeItem.Invoke();
+            yield return null;  // Wait for the next frame before continuing
+        }
+        if (stat == health)
+        {
+            Debug.Log("Die");
+        }
 
     }
-    private IEnumerator IncreaseFullnessOverTime(Stats stat, float addOn)
+    private IEnumerator IncreaseFullnessOverTime(Stats stat, float targetVal, float addOn)
     {
-        float currentVal = stat.GetCurrentValue();
-        
-        float targetVal = currentVal + addOn;
-        stat.UpdateCurrentValue(addOn);
-        float rate = 3f;
-        float step = 0f;
-        // This will keep reducing fullness until it reaches 0
-        while (stat.GetCurrentVisualValue() < targetVal)
+        if (addOn ==  0)
+            yield break;
+        stat.IsUpdating = true;
+        //Stop coroutine for redusing value over time - for food and water
+        if (stat.StatUpdating != null && stat != health)
         {
+           // Debug.Log("Stop cor " + stat.statName);
+            StopCoroutine(stat.StatUpdating);
+            stat.StatUpdating = null;   
+        }
+
+        float startVal = stat.GetCurrentVisualValue();
+      
+       
+      
+        float rate = 5f;
+        float step = 0f;
+        
+        while (stat.GetCurrentVisualValue() < stat.TargetValue)
+        {
+
+            if(targetVal != stat.TargetValue)
+            {
+                
+                yield break;
+            }
+            stat.SetCurrentVisualValue(Mathf.Lerp(startVal, stat.TargetValue, step));
+         
+            step += rate * Time.deltaTime;
             
             
-            stat.SetCurrentVisualValue(Mathf.Lerp(currentVal,targetVal, step));      
-            step += rate * Time.deltaTime; 
             if (consumeItem != null)
-                consumeItem.Invoke(false);
+                consumeItem.Invoke();
+
             yield return null;  // Wait for the next frame before continuing
         }
-        
-        // Trigger hunger state or any other consequence
+        if (stat.GetCurrentVisualValue() > 30f && stat != health && health.StatUpdating != null)
+        {
+           // Debug.Log("Stop coroutine health damage");
+            StopCoroutine(health.StatUpdating);
+            health.StatUpdating = null;
+        }
+        stat.IsUpdating = false;
+        if (stat != health)
+        {
+           
+            stat.StatUpdating = StartCoroutine(ReduceFullnessOverTime(stat));
+
+        }
+
+        yield break;
 
     }
     private IEnumerator ReduceFullness(Stats stat, float addOn)
@@ -177,7 +214,8 @@ public class PlayerStateManager : MonoBehaviour
         float currentVal = stat.GetCurrentValue();
 
         float targetVal = currentVal - addOn;
-        stat.UpdateCurrentValue(-addOn);
+        // stat.UpdateCurrentValue(-addOn);
+        stat.SetCurrentValue(targetVal);
         float rate = 3f;
         float step = 0f;
         // This will keep reducing fullness until it reaches 0
@@ -185,10 +223,10 @@ public class PlayerStateManager : MonoBehaviour
         {
 
 
-            stat.SetCurrentVisualValue(Mathf.Lerp(currentVal, targetVal, step));
+            stat.SetCurrentVisualValue(Mathf.Lerp(stat.GetCurrentValue(), targetVal, step));
             step -= rate * Time.deltaTime;
             if (consumeItem != null)
-                consumeItem.Invoke(false);
+                consumeItem.Invoke();
             yield return null;  // Wait for the next frame before continuing
         }
 

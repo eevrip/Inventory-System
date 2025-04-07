@@ -9,13 +9,22 @@ public class Collectable : MonoBehaviour, IInteractable
     private ItemObject item;
    
     public ItemObject Item {  get { return item; } set {item = value; } }
+    [SerializeField] private string message;
+    public string Message
+    {
+        get { return message; }
+        set
+        {
+            message = value;
+        }
+    }
     [SerializeField]
     private PlayerAnimation anim;
 
     public void Start()
     {
         anim = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerAnimation>();
-        
+        message = "Collect " + item.title;
     }
     public void Interact() {
       
