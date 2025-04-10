@@ -10,12 +10,21 @@ public class Storage : Inventory, IInteractable
     private ItemObject item;
     public ItemObject Item { get { return item; } set { item = value; } }
     [SerializeField] private string message;
+    [SerializeField] private bool isInteractable = true;
     public string Message
     {
         get { return message; }
         set
         {
             message = value;
+        }
+    }
+    public bool IsInteractable
+    {
+        get { return isInteractable; }
+        set
+        {
+            isInteractable = value;
         }
     }
     //  public delegate void OnStorageUpdate();
@@ -30,6 +39,7 @@ public class Storage : Inventory, IInteractable
      
         storageUI = UIManager.instance.Storage_UI;
         message = "Open storage";
+        InventoryContainer.TypeOfInventory = "Storage";
         for(int i=0; i< itemsInStorage.Count; i++)
         {
             Add(itemsInStorage[i]);

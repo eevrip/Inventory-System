@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb91e06563e5534c82398906b1ae62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
   item: {fileID: 11400000, guid: bf57898c7c1ea0b479ebfcc34ca90357, type: 2}
+  message: 
+  isInteractable: 1
+  anim: {fileID: 0}
 --- !u!54 &1791507243830778267
 Rigidbody:
   m_ObjectHideFlags: 0

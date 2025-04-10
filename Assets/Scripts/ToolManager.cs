@@ -22,7 +22,7 @@ public class ToolManager : MonoBehaviour
     public toolUpdate onToolUpdateCallback;
     public int[] currToolStats = new int[2];
     [SerializeField] private GameObject toolGO;
-  
+
 
     void Start()
     {
@@ -30,12 +30,12 @@ public class ToolManager : MonoBehaviour
         int numSlots = System.Enum.GetNames(typeof(ToolKind)).Length;
         currTool = new ToolObject[numSlots]; //create array with the same dimensions as the number of the kinds of equipment
         onToolUpdateCallback += SpawnTool;
-        
+
     }
 
     public void AddStats(ToolObject obj)
     {
-     
+
 
         currToolStats[0] = obj.damage;
         //currToolStats[1] = obj.defence;
@@ -50,7 +50,7 @@ public class ToolManager : MonoBehaviour
 
     public void RemoveStats(ToolObject obj)
     {
-     
+
         currToolStats[0] = 0;
         // currToolStats[1] = 0;
         if (onToolUpdateCallback != null)
@@ -59,21 +59,28 @@ public class ToolManager : MonoBehaviour
 
     public void SpawnTool(ToolObject obj, bool addingState)
     {
-        if (addingState) {
-            if (toolGO.transform.childCount>0)
-            {
+        if (addingState)
+        {
+
+            if (toolGO.transform.childCount > 0)
                 Destroy(toolGO.transform.GetChild(0).gameObject);
-            }
-        GameObject temp;
-        temp = Instantiate(obj.prefab, toolGO.transform);
-        temp.GetComponent<Rigidbody>().isKinematic = true;
-}
+            
+
+            GameObject temp;
+            temp = Instantiate(obj.prefab, toolGO.transform);
+            temp.GetComponent<IInteractable>().IsInteractable = false;
+            temp.GetComponent<Rigidbody>().isKinematic = true;
+        }
+
+
         else
         {
-            Destroy(toolGO.transform.GetChild(0).gameObject);
+            if (toolGO.transform.childCount > 0)
+                Destroy(toolGO.transform.GetChild(0).gameObject);
+            
         }
 
     }
-   
+
 }
 

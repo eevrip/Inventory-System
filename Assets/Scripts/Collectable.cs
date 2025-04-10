@@ -10,12 +10,21 @@ public class Collectable : MonoBehaviour, IInteractable
    
     public ItemObject Item {  get { return item; } set {item = value; } }
     [SerializeField] private string message;
+    [SerializeField] private bool isInteractable = true;
     public string Message
     {
         get { return message; }
         set
         {
             message = value;
+        }
+    }
+    public bool IsInteractable
+    {
+        get { return isInteractable; }
+        set
+        {
+            isInteractable = value;
         }
     }
     [SerializeField]

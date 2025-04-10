@@ -29,8 +29,14 @@ public class ToolBarSlot : InventorySlot//, IPointerEnterHandler, IPointerExitHa
     }
     public override void AddItem(ItemObject newItem)
     {
+        if (isSelected && newItem != Item)
+        {
+            UnequipSlot();
+        }
+        ItemObject temp = Item;
+        
         base.AddItem(newItem);
-        if (isSelected)
+        if (isSelected && Item != temp)
         {
             EquipSlot();
         }

@@ -30,7 +30,7 @@ public class ToolTipManager : MonoBehaviour
     public GameObject use;
     public GameObject drop;
     public GameObject switchContainer;
-
+    private bool isInventoryOpen;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +74,9 @@ public class ToolTipManager : MonoBehaviour
 
             this.defence.gameObject.SetActive(false);
             this.damage.gameObject.SetActive(false);
+            if(isInventoryOpen) {  use.SetActive(true);}
+            else { use.SetActive(false);}
+           
         }
         else if (item.type == ItemType.Equipment)
         {
@@ -88,6 +91,7 @@ public class ToolTipManager : MonoBehaviour
             this.food.gameObject.SetActive(false);
             this.water.gameObject.SetActive(false);
             this.health.gameObject.SetActive(false);
+            use.SetActive(false);
         }
         else if (item.type == ItemType.Tool)
         {
@@ -103,12 +107,14 @@ public class ToolTipManager : MonoBehaviour
             this.food.gameObject.SetActive(false);
             this.water.gameObject.SetActive(false);
             this.health.gameObject.SetActive(false);
+            use.SetActive(false);
         }
         else
         {
             SetAllTextActive(false);
             this.description.gameObject.SetActive(true);
             this.header.gameObject.SetActive(true);
+            use.SetActive(false);
 
         }
         this.header.text = item.title;
@@ -180,7 +186,8 @@ public class ToolTipManager : MonoBehaviour
     public void ActivateButtonsInventory()
     {
         bind.SetActive(true);
-        use.SetActive(true);
+        //use.SetActive(true);
+        isInventoryOpen = true;
         drop.SetActive(true);
         switchContainer.SetActive(false);
     }
@@ -190,6 +197,7 @@ public class ToolTipManager : MonoBehaviour
         use.SetActive(false);
         drop.SetActive(false);
         switchContainer.SetActive(true);
+        isInventoryOpen = false;
     }
     public void DeactivateButtonsInfo()
     {
@@ -197,5 +205,6 @@ public class ToolTipManager : MonoBehaviour
         use.SetActive(false);
         drop.SetActive(false);
         switchContainer.SetActive(false);
+        isInventoryOpen = false;
     }
 }

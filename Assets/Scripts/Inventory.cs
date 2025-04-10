@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     protected virtual void Awake()
     {
         inventoryContainer = new InventorySystem(inventorySize);
+        
     }
 
     public virtual bool Add(ItemObject item)

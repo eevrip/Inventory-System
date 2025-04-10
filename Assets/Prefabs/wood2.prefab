@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb91e06563e5534c82398906b1ae62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
   item: {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}
+  message: 
+  isInteractable: 1
+  anim: {fileID: 0}
 --- !u!54 &8038005509309895761
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75,7 +77,7 @@ GameObject:
   - component: {fileID: 6288740175497616297}
   - component: {fileID: 6983337322180531212}
   - component: {fileID: 5119813233202208966}
-  - component: {fileID: 3895039268715870855}
+  - component: {fileID: 8633679805255716724}
   m_Layer: 8
   m_Name: mesh
   m_TagString: Collectable
@@ -148,7 +150,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3895039268715870855
+--- !u!64 &8633679805255716724
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -10,5 +10,5 @@ public interface IInteractable
   //  public void EndInteraction();
  
     public string Message {  get; set; }
-    
+    public bool IsInteractable { get; set; }
 }

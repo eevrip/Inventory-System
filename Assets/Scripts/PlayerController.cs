@@ -43,7 +43,11 @@ public class PlayerController : MonoBehaviour
 
             if (interactableItem != null)
             {
-                uiManager.SetInformationalText(interactableItem.Message);
+                if (interactableItem.IsInteractable)
+                {
+                    uiManager.SetInformationalText(interactableItem.Message);
+                }
+                
                 if (Input.GetMouseButtonDown(0))
                 { //Can interact with it
                     interactableItem.Interact();

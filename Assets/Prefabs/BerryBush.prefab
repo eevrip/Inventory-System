@@ -294,6 +294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 6bb9f8c24f89be0429f8cbdf7f331ea3, type: 2}
+  message: 
+  isInteractable: 1
   anim: {fileID: 0}
 --- !u!1 &6429055209370807932
 GameObject:

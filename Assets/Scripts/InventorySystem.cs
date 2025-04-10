@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Xml.Schema;
+
 [System.Serializable]
 public class InventorySystem
 {
@@ -11,7 +13,8 @@ public class InventorySystem
     [SerializeField] private List<ItemObject> inventory;
     public List<ItemObject> Inventory => inventory;
 
-
+    private string typeOfInventory;
+    public string TypeOfInventory { set { typeOfInventory = value; } get { return typeOfInventory; } }
     public InventorySystem(int size)
     {
         inventory = new List<ItemObject>();
@@ -23,7 +26,7 @@ public class InventorySystem
         if(inventory.Count >= inventorySize)
         {
             //Debug.Log("Inventory full");
-            PopUpMessagesManager.instance.ShowPopUpMessage("Inventory full");
+            PopUpMessagesManager.instance.ShowPopUpMessage($"{typeOfInventory} full");
             return false;
         }
        inventory.Add(item);

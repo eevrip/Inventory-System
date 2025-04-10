@@ -51,6 +51,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 197041a2edcff584a9e417d68698539a, type: 2}
   amount: 2
   message: Break
+  isInteractable: 1
 --- !u!1 &4224828193669164327
 GameObject:
   m_ObjectHideFlags: 0

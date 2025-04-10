@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 8efff327f006ffb478fd57c418043c36, type: 2}
+  message: 
+  isInteractable: 1
   anim: {fileID: 0}
 --- !u!54 &653491052293968677
 Rigidbody:

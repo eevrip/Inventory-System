@@ -63,6 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: e36e44aa36d286a4ea108f5feed7f347, type: 2}
+  message: 
+  isInteractable: 1
   anim: {fileID: 0}
 --- !u!1 &8361345272464739260
 GameObject:

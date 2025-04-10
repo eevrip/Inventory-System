@@ -44,10 +44,10 @@ public class Recipe : ScriptableObject
             foreach (Ingredient ingredient in ingredients)
             {
                 inventory.RemoveItems(ingredient.item, ingredient.amount);
-                PopUpMessagesManager.instance.ShowPopUpMessage("- " + ingredient.item.title + " " + ingredient.amount);
+                PopUpMessagesManager.instance.ShowPopUpMessage($"-{ingredient.item.title} (x{ingredient.amount})");
             }
             inventory.Add(resultItem);
-            PopUpMessagesManager.instance.ShowPopUpMessage("+ " + resultItem.title);
+            PopUpMessagesManager.instance.ShowPopUpMessage($"+  {resultItem.title}");
             return true;
         }
 

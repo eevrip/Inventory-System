@@ -42,6 +42,7 @@ public class PlayerInventory : Inventory
     private int[] pairing; //= new int[toolBarSize];
 
     public void Start() {
+        InventoryContainer.TypeOfInventory = "Backpack";
         player = GameObject.FindGameObjectWithTag("Player");
         for (int i = 0; i < pairing.Length; i++)
         {
@@ -70,10 +71,11 @@ public class PlayerInventory : Inventory
             RemoveToolBarOnly(toolBarSlot);
         AdjustPairing(false, idx);
         InventoryContainer.RemoveFromInventory(item);
-       
-        if (onItemUpdateCallback != null)
-            onItemUpdateCallback.Invoke();
-
+        if (toolBarSlot == -1)
+        {
+            if (onItemUpdateCallback != null)
+                onItemUpdateCallback.Invoke();
+        }
     }
     //Removes item from inventory and toolbar and spawn it to the world given the inventory slot index
     public void RemoveSpawn(int index)
@@ -88,11 +90,12 @@ public class PlayerInventory : Inventory
         //Spawn Item on the ground 
         SpawnItem(item);
 
+        if (toolBarSlot == -1)
+        {
+            if (onItemUpdateCallback != null)
+                onItemUpdateCallback.Invoke();
 
-        if (onItemUpdateCallback != null)
-            onItemUpdateCallback.Invoke();
-
-
+        }
 
     }
     //Removes item from inventory and toolbar given the inventory slot index
@@ -105,17 +108,18 @@ public class PlayerInventory : Inventory
         if (toolBarSlot != -1)
             RemoveToolBarOnly(toolBarSlot);
         AdjustPairing(false, index);
-       
-        if (onItemUpdateCallback != null)
-            onItemUpdateCallback.Invoke();
-
+        if (toolBarSlot == -1)
+        {
+            if (onItemUpdateCallback != null)
+                onItemUpdateCallback.Invoke();
+        }
 
 
     }
     //Spawns item in the world
     public void SpawnItem(ItemObject item) {
 
-        Vector3 newPos = player.transform.position + player.transform.forward * 2f + new Vector3(0f, 1f, 0f);// + add a height ?
+        Vector3 newPos = player.transform.position + player.transform.forward * 2f + new Vector3(0f, 1.5f, 0f);// + add a height ?
         GameObject temp;
         temp = Instantiate(item.prefab, newPos, Quaternion.identity, environment);  //
         temp.GetComponent<Rigidbody>().isKinematic = false;

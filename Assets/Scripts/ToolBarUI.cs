@@ -28,8 +28,8 @@ public class ToolBarUI : MonoBehaviour
         slots = toolBarSlotsParent.GetComponentsInChildren<ToolBarSlot>(); //Get all the slots
 
         uiManager = UIManager.instance;
-        //  isToolBarEnabled = (!uiManager.Backpack_UI.IsUIShown && !uiManager.IsCraftingTableOpen);
-        isToolBarEnabled = !uiManager.Backpack_UI.IsUIShown;
+          isToolBarEnabled = (!uiManager.Backpack_UI.IsUIShown && !uiManager.IsCraftingTableOpen);
+       // isToolBarEnabled = !uiManager.Backpack_UI.IsUIShown;
 
     }
 
@@ -54,8 +54,8 @@ public class ToolBarUI : MonoBehaviour
 
     private void Update()
     {
-        isToolBarEnabled = !uiManager.Backpack_UI.IsUIShown;
-        // isToolBarEnabled = (!uiManager.Backpack_UI.IsUIShown && !uiManager.IsCraftingTableOpen) ? true : false;
+       // isToolBarEnabled = !uiManager.Backpack_UI.IsUIShown;
+         isToolBarEnabled = (!uiManager.Backpack_UI.IsUIShown && !uiManager.IsCraftingTableOpen) ? true : false;
 
         if (isToolBarEnabled)
         {
@@ -87,7 +87,8 @@ public class ToolBarUI : MonoBehaviour
 
             if (Input.GetButtonDown("E")) //If button E is pressed then unequiped active slot in toolbar
             {
-                if (selectIdx > 0)
+                Debug.Log(isToolBarEnabled + "this highlidht toggle " + selectIdx);
+                if (selectIdx >= 0)
                     slots[selectIdx].ToggleHighlight();
                 selectIdx = -1;
                

@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 931111d8e1120b1418d3f6f54fc55c10, type: 2}
+  message: 
+  isInteractable: 1
 --- !u!1001 &7364651547867871378
 PrefabInstance:
   m_ObjectHideFlags: 0

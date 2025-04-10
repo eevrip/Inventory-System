@@ -66,7 +66,10 @@ MonoBehaviour:
   inventoryContainer:
     inventorySize: 0
     inventory: []
+  itemsInStorage: []
   item: {fileID: 11400000, guid: 3fdf2f272fa861646b663f4750101fe9, type: 2}
+  message: 
+  isInteractable: 1
 --- !u!1001 &2432769894388534586
 PrefabInstance:
   m_ObjectHideFlags: 0
