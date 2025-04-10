@@ -9,7 +9,7 @@ https://assetstore.unity.com/packages/3d/props/weapons/melee-weapons-pack-28-246
 
 https://assetstore.unity.com/packages/3d/environments/polytex-home-168285
 
-Rest of assets created by myself using Unity ProBuilder
+The rest of the 3D assets were created by myself using Unity ProBuilder as well as the 2D assets for the user interface using Photoshop.
 
 Player Mesh and Animation: 
 
