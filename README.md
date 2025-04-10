@@ -1,4 +1,4 @@
-# Inventory-System
+# Mechanics for Survival Games
 Assets:
 =================================
 Environment: 
@@ -9,10 +9,8 @@ https://assetstore.unity.com/packages/3d/props/weapons/melee-weapons-pack-28-246
 
 https://assetstore.unity.com/packages/3d/environments/polytex-home-168285
 
-Player Mesh: 
+Rest of assets created by myself using Unity ProBuilder
 
-https://assetstore.unity.com/packages/3d/characters/humanoids/thyra-low-poly-female-character-207703
-
-Animation: 
+Player Mesh and Animation: 
 
 https://www.mixamo.com/
