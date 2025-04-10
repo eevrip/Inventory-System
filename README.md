@@ -1,4 +1,5 @@
 # Mechanics for Survival Games
+Information: https://eevrip.github.io/inventorySystem-details
 Assets:
 =================================
 Environment: 
