@@ -15,5 +15,5 @@ MonoBehaviour:
   recipeName: Coal
   resultItem: {fileID: 11400000, guid: e36e44aa36d286a4ea108f5feed7f347, type: 2}
   ingredients:
-  - amount: 4
+  - amount: 2
     item: {fileID: 11400000, guid: 6fb8d6fc84aeaa945a74cc2de248bedd, type: 2}

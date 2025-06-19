@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33bb06039df575e41bed995e711edfde, type: 3}
-  m_Name: Coal
+  m_Name: RedDye
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6622810302002672318, guid: 491f1e48f16cf744eab465b0365daaf6, type: 3}
+  prefab: {fileID: 2778704078987424413, guid: d8fbde03b731f134d9c7744c4c341ba6, type: 3}
   type: 0
-  title: Coal
-  description: It is staining everything. Can be used for heat source.
-  icon: {fileID: 21300000, guid: 9ba14469b53081c4c8f6c94166ac2ac4, type: 3}
-  ID: 4
+  title: Red Dye
+  description: Can dye things red
+  icon: {fileID: 21300000, guid: 44bbcd5eb9a38c54296bfcbdc2e706f4, type: 3}
+  ID: 5
   canBeCrafted: 0

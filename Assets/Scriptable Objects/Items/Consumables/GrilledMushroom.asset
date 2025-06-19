@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8862650e733ae3e4ea49da0a5987dfab, type: 3}
-  m_Name: BerryJuice
+  m_Name: GrilledMushroom
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2567467593481034127, guid: b44345028f0a75944a5a88ff981e8909, type: 3}
+  prefab: {fileID: 2774149542011654656, guid: 684535327fb47314ca149db2c1ef00d9, type: 3}
   type: 1
-  title: Berry Juice
-  description: Yummy berry juice. Both delicious and nutricious!
-  icon: {fileID: 21300000, guid: 17c78f0d987cb6e44b061ee7efdc9a98, type: 3}
-  ID: 3
+  title: Grilled Mushrooms
+  description: Smells barbequey. Yum!
+  icon: {fileID: 21300000, guid: 1b959e8cd959a9e42b10e3aed508245f, type: 3}
+  ID: 16
   canBeCrafted: 0
-  food: 10
-  water: 25
+  food: 25
+  water: 0
   health: 5

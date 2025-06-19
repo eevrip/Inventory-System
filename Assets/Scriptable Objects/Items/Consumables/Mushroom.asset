@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8862650e733ae3e4ea49da0a5987dfab, type: 3}
-  m_Name: Berries
+  m_Name: Mushroom
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8769846971884980911, guid: b648030a426beda4980a0b79fd5739fb, type: 3}
+  prefab: {fileID: 2850838596002067179, guid: 6f3495760c5fee64e8cc125df5ace2dd, type: 3}
   type: 1
-  title: Berries
-  description: Sweet and tasty treats
-  icon: {fileID: 21300000, guid: 63406dc92f29dc84a8d87cce11c53428, type: 3}
-  ID: 2
+  title: Mushroom
+  description: 'Edible mushroom.
+
+'
+  icon: {fileID: 21300000, guid: eada3310f4f609a4ba0c0dd3cf66686b, type: 3}
+  ID: 14
   canBeCrafted: 0
   food: 1
-  water: 1
-  health: 1
+  water: 0
+  health: 0

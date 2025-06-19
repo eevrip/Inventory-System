@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33bb06039df575e41bed995e711edfde, type: 3}
-  m_Name: RedDye
+  m_Name: Gold
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2778704078987424413, guid: d8fbde03b731f134d9c7744c4c341ba6, type: 3}
+  prefab: {fileID: 6238562228292339514, guid: 897321d37fad774479d088fe3e2a3cb6, type: 3}
   type: 0
-  title: Red Dye
-  description: Can dye things red
-  icon: {fileID: 21300000, guid: 44bbcd5eb9a38c54296bfcbdc2e706f4, type: 3}
-  ID: 16
+  title: Gold ore
+  description: Strong material. Can be used in crafting.
+  icon: {fileID: 21300000, guid: 6e6ce8ffcac44c8458ca831d0b98fb75, type: 3}
+  ID: 3
   canBeCrafted: 0

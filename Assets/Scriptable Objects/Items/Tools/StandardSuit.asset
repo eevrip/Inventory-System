@@ -17,7 +17,7 @@ MonoBehaviour:
   title: Chest Equipment
   description: Provides protection
   icon: {fileID: 21300000, guid: c05b9cd8b8796354ba174a443beb41bd, type: 3}
-  ID: 19
+  ID: 12
   canBeCrafted: 0
   defence: 5
   equipmentKind: 1

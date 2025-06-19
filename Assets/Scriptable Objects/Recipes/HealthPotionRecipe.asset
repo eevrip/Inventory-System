@@ -15,7 +15,7 @@ MonoBehaviour:
   recipeName: Health Potion
   resultItem: {fileID: 11400000, guid: 08ddf1d94b78c3b47806532b138d58ae, type: 2}
   ingredients:
-  - amount: 4
+  - amount: 5
     item: {fileID: 11400000, guid: 6bb9f8c24f89be0429f8cbdf7f331ea3, type: 2}
-  - amount: 4
+  - amount: 5
     item: {fileID: 11400000, guid: b108b6da544f6044a95bf9009a4eedc8, type: 2}

@@ -17,7 +17,7 @@ MonoBehaviour:
   title: Pickaxe
   description: Can used to break rocks faster.
   icon: {fileID: 21300000, guid: 77e72906668a2cb4890907309e7523bd, type: 3}
-  ID: 14
+  ID: 11
   canBeCrafted: 0
   damage: 5
   toolKind: 1

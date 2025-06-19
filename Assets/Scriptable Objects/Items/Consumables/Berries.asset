@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8862650e733ae3e4ea49da0a5987dfab, type: 3}
-  m_Name: MushroomSoup
+  m_Name: Berries
   m_EditorClassIdentifier: 
-  prefab: {fileID: 9172458620206628427, guid: 36b78148ce026a842b44177735252610, type: 3}
+  prefab: {fileID: 8769846971884980911, guid: b648030a426beda4980a0b79fd5739fb, type: 3}
   type: 1
-  title: Mushroom Soup
-  description: Fills and warms your tummy.
-  icon: {fileID: 21300000, guid: 5e2f082c6d2860040a3283711b45a5f4, type: 3}
-  ID: 11
+  title: Berries
+  description: Sweet and tasty treats
+  icon: {fileID: 21300000, guid: 63406dc92f29dc84a8d87cce11c53428, type: 3}
+  ID: 13
   canBeCrafted: 0
-  food: 25
-  water: 25
-  health: 5
+  food: 1
+  water: 1
+  health: 1

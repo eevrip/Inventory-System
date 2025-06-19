@@ -15,7 +15,7 @@ MonoBehaviour:
   recipeName: Mushroom Soup
   resultItem: {fileID: 11400000, guid: 1af0715748ef26c44a1a3841fd162301, type: 2}
   ingredients:
-  - amount: 3
+  - amount: 5
     item: {fileID: 11400000, guid: b108b6da544f6044a95bf9009a4eedc8, type: 2}
-  - amount: 2
+  - amount: 1
     item: {fileID: 11400000, guid: bf57898c7c1ea0b479ebfcc34ca90357, type: 2}
